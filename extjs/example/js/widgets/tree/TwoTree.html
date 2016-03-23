@@ -1,0 +1,84 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		.complete .x-tree-node-anchor span {
+			text-decoration: line-through;
+	        color: #777;
+	    }
+	    .treeDiv {
+	    	float:left;
+	    	margin:20px;
+	    	border:1px solid #c3daf9;
+	    	padding: 10px 10px 10px 20px;
+	    	overflow:auto;
+	    }
+	</style>
+<body>
+	<div  style="padding: 10px 10px 10px 20px;">这是一个两棵树互相拖拽的例子。
+		<ul>
+			<li>1、没有半选状态；</li>
+			<li>2、全选子节点,父节点无变化;</li>
+			<li>3、默认选中节点在没有操作过节点后获取不到;</li>
+			<li>4、父节点选中后，子节点没有全部选中。</li>
+		</ul>
+	</div>
+	<br/>
+	<div id="twoTree1" class="treeDiv"></div>
+	<div id="twoTree2" class="treeDiv"></div>
+	<br/>
+	<script>
+		var TwoTree1 = function() {
+		    TwoTree1.superclass.constructor.call(this, {
+				renderTo  : 'twoTree1',
+		        height    : 300,
+		        width     : 250,
+		        frame     : false,
+		        useArrows : true, //是否使用箭头样式
+		        autoScroll: true,
+		        animate   : true,
+		        enableDD  : true,
+		        border    : false,
+		        containerScroll: true,
+		        rootVisible    : false,
+		        root: {
+		            nodeType : 'async',
+					text     : '所有部门',
+					expanded : true,
+					draggable: false
+		        },
+		        dataUrl : "js/widgets/tree/FavoriteTree.php"
+			});
+			this.on('nodedrop',function(e){
+					if(e.point = "append")
+						Ext.Msg.alert('提示','拖拽节点："'+e.dropNode.text+'"<br>当前节点："'+e.target.text+'"');
+          });   
+		};
+		Ext.extend(TwoTree1, Ext.tree.TreePanel);
+		new TwoTree1();
+		var TwoTree2 = function() {
+		    TwoTree2.superclass.constructor.call(this, {
+				renderTo  : 'twoTree2',
+		        height    : 300,
+		        width     : 250,
+		        frame     : false,
+		        useArrows : true, //是否使用箭头样式
+		        autoScroll: true,
+		        animate   : true,
+		        enableDD  : true,
+		        border    : false,
+		        containerScroll: true,
+		        rootVisible    : false,
+		        root: {
+		            nodeType : 'async',
+					text     : '所有部门',
+					expanded : true,
+					draggable: false
+		        },
+		        dataUrl : "js/widgets/tree/FavoriteTree.php"
+			});
+		};
+		Ext.extend(TwoTree2, Ext.tree.TreePanel);
+		new TwoTree2();
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+	<head>
+	    <title>玉琴蝶园之 Ext JS 3.1 例子</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+	</head>
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+		    <div class="loading-indicator"><img src="../style/images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>Ext 3.1 - 组件例子<br /><span id="loading-msg">正在载入...</span></div>
+		</div>
+		
+		<link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
+	
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+	    <script type="text/javascript" src="../ext/ext-base.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+	    <script type="text/javascript" src="../ext/ext-all.js"></script>
+		<script>
+			Ext.BLANK_IMAGE_URL="../resources/images/default/s.gif";
+		</script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+		<script type="text/javascript" src="common/Common.js"></script>
+		<script type="text/javascript" src="common/CommonWidget.js"></script>
+		<script type="text/javascript" src="js/WidgetsTree.js"></script>
+		<script type="text/javascript" src="js/ContentTabPanle.js"></script>
+		<script type="text/javascript" src="js/Common.js"></script>
+		<script type="text/javascript" src="js/init.js"></script>
+		
+		<!-- 加载扩展组件 -->
+		<script type="text/javascript" src="../ext/extention/RowEditor.js"></script>
+		
+		<script type="text/javascript" src="../ext/extention/Portal.js"></script>
+		<script type="text/javascript" src="../ext/extention/PortalColumn.js"></script>
+		<script type="text/javascript" src="../ext/extention/Portlet.js"></script>
+	</body>
+</html>

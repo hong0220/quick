@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+ng-app: 这个指定定义并且关联了使用angularJS的HTML页面部分
+ng-model: 这个指定定义并绑定AngularJS数据和HTML页面中相关输入元素(input,textarea等等)
+ng-bind: 这个指定将AngularJS的数据绑定到页面指定HTML元素上，例如, <p>
+-->
+<div ng-app="">
+    <input type="text" ng-model="website">
+
+    <p>
+        你好，<span ng-bind="website"></span>
+    </p>
+</div>
+<script src="js/angular.min.js"></script>
+</body>
+</html>

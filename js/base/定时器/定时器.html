@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>定时器的开启和关闭</title>
+    <meta name="Generator" content="EditPlus">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        #divs {
+            width: 400px;
+            height: 400px;
+            margin: 20% auto;
+            background-color: #ffffff;
+        }
+
+        #divs:hover {
+            background: #330033;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('divs');
+            var oBtn1 = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+            var timer = null;
+            oBtn1.onclick = function () {
+                timer = setInterval(function () {
+                    alert('点击浏览....(*^__^*) 嘻嘻');
+                }, 1000);
+            };
+            oBtn2.onclick = function () {
+                clearInterval(timer);
+            };
+        };
+    </script>
+</head>
+
+<body>
+<div id="divs">
+    <input id="btn1" type="button" value="点击浏览"/>
+    <input id="btn2" type="button" value="关闭"/>
+</div>
+</body>
+</html>

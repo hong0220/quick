@@ -1,0 +1,25 @@
+.dd-arrow-down.dd-arrow-down-invisible {
+    display: none;
+    visibility: hidden;
+}
+
+.dd-arrow-down {
+    background-image: url(js/extention/form/DDTabPanel/dd-arrow-down.gif);
+    display: block;
+    visibility: visible;
+    z-index: 20000;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+}
+
+html, body {
+    font: 10pt "Segoe UI","Tahoma","Helvetica","Arial",sans-serif;
+    padding: 5px;
+}
+#container {
+    margin: 5px 10px;
+        }

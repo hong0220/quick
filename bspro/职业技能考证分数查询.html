@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>职业技能考证分数查询（Bootstrap）</title>
+    <link rel="stylesheet" href="../resource/bootstrap3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resource/bootstrap3/css/bootstrap-theme.min.css">
+
+    <!--[if lt IE 9]>
+    <script src="../resource/bootstrap3/js/html5shiv.js"></script>
+    <script src="../resource/bootstrap3/js/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .bs-docs-home {
+            background-color: #1B31B1;
+            background-image: url(../resource/image/line.png);
+        }
+    </style>
+</head>
+
+<body class="bs-docs-home">
+<div class="container theme-showcase">
+    <h1 style=" line-height:2em;"></h1><br/>
+
+    <div class="row">
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>职业技能考证分数查询</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>注意!</strong> 本站查询的分数来源于12333官网，详情请到官网咨询
+                    </div>
+
+                    <form role="form" name="form1">
+                        <div class="form-group">
+                            <label for="IDCard">请输入您的身份证号码</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="IDCard" name="IDCard" placeholder="身份证号码">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onClick="form1.submit();">查询</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Subject">请输入您要查询的科目</label>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="Subject" name="Subject"
+                                       placeholder="科目，空白科目意味着查询所有的科目">
+
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle"
+                                            data-toggle="dropdown">科目 <span class="caret"></span></button>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="#" onClick="$('#Subject').val('计算机操作员');">计算机操作员</a></li>
+                                        <li><a href="#" onClick="$('#Subject').val('网页设计');">网页设计</a></li>
+                                        <li><a href="#" onClick="$('#Subject').val('多媒体');">多媒体</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>注意!</strong> 没有查到成绩，请检查身份证号码和科目后，再次查询
+                    </div>
+
+                    <div class="table-responsive">
+                        <table border="0" cellspacing="0" cellpadding="0" class="table">
+                            <tr class=" label-primary">
+                                <th scope="col" width="50%"><span style="color:white">科目</span></th>
+                                <th scope="col"><span style="color:white">成绩</span></th>
+                            </tr>
+                            <tr class="active">
+                                <td width="50%">计算机操作员</td>
+                                <td>没有成绩</td>
+                            </tr>
+                            <tr class="success">
+                                <td>计算机操作员</td>
+                                <td>优秀</td>
+                            </tr>
+                            <tr class="active">
+                                <td>多媒体操作员</td>
+                                <td>良好</td>
+                            </tr>
+                            <tr class="success">
+                                <td>网页设计</td>
+                                <td>不及格</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+<script src="../resource/js/jquery.min.js"></script>
+<script src="../resource/bootstrap3/js/bootstrap.min.js"></script>
+</body>
+</html>

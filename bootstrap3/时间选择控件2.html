@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="../resource/bootstrap3/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../resource/bootstrap3/css/bootstrap-datepicker.min.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<div class="container">
+    <input class="datepicker" data-date-format="mm/dd/yyyy">
+    <br>
+    <input type="text" type="text" class="form-control datepicker">
+</div>
+
+<script type="text/javascript" src="../resource/js/jquery.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../resource/bootstrap3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../resource/bootstrap3/js/bootstrap-datepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../resource/bootstrap3/js/bootstrap-datepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        language: 'zh-CN'
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        if (jQuery().datepicker) {
+            $('.date-picker').datepicker({
+                orientation: "left",
+                autoclose: true
+            });
+        }
+    });
+</script>
+</body>
+</html>

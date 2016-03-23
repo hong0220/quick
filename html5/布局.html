@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            /* 为了更加简单的处理元素的宽度问题这里我们可以使用box-sizing*/
+            box-sizing: border-box;
+
+            /* 为了保证更多浏览器兼容性，我们添加如下前缀*/
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+
+            font-size: 14px;
+            font-family: Arial;
+        }
+
+        header {
+            background: #EEE;
+            padding: 20px;
+            margin-bottom: 5px;
+        }
+
+        section {
+            background: #EEE;
+            padding: 20px;
+            float: left;
+            width: 60%;
+            margin-bottom: 5px;
+        }
+
+        nav, article {
+            background: #CCC;
+            padding: 20px;
+        }
+
+        aside {
+            background: #EEE;
+            padding: 20px;
+            margin-left: 62%;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            clear: both;
+            padding: 10px;
+            background: #EEE;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<header>&lt;header/&gt;</header>
+<section>
+    <p>&lt;section/&gt;</p>
+    <article>
+        &lt;article/&gt;
+    </article>
+</section>
+<aside>
+    <p>&lt;aside/&gt;</p>
+    <nav>&lt;nav/&gt;</nav>
+</aside>
+<footer>
+    &lt;footer/&gt;
+</footer>
+</body>
+</html>

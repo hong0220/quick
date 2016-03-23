@@ -1,0 +1,30 @@
+﻿.ux-flag-start1 {
+    background-image:url(images/award_star_gold_1.png) ! important;
+}
+.ux-flag-start2 {
+    background-image:url(images/award_star_gold_2.png) ! important;
+}
+.ux-flag-start3 {
+    background-image:url(images/award_star_gold_3.png) ! important;
+}
+.ux-icon-combo-icon {
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    width: 18px;
+    height: 14px;
+}
+.ux-icon-combo-input {
+    padding-left: 25px;
+}
+.x-form-field-wrap .ux-icon-combo-icon {
+    top: 3px;
+    left: 5px;
+}
+.ux-icon-combo-item {
+    background-repeat: no-repeat ! important;
+    background-position: 3px 50% ! important;
+    padding-left: 24px ! important;
+}
+
+.checked{background-image:url(../../../../resources/images/default/menu/checked.gif)}
+.unchecked{background-image:url(../../../../resources/images/default/menu/unchecked.gif)}

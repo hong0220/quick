@@ -1,0 +1,49 @@
+<html>
+	<title>玉琴蝶园 - Ext JS 3.1 例子 之 图片选择器</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../../../style/main.css" />
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+			<div class="loading-indicator">
+				<img src="../../../../style/images/extanim32.gif" width="32" height="32" style="margin-right: 8px; float: left; vertical-align: top;" />
+				Ext 3.1 - 组件例子
+				<br />
+				<span id="loading-msg">正在载入...</span>
+			</div>
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/css/ext-all.css" />
+		<link rel="stylesheet" type="text/css" href="Ext.ux.ImageChooser.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-base.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-all.js"></script>
+		<script type="text/javascript" src="Ext.ux.ImageChooser.js"></script>
+		<script type="text/javascript" src="Ext.ux.form.ImageField.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+		<div style="padding: 10px 10px 10px 20px;">
+			图片选择框和图片域的例子。包括：
+			<ul>
+				<li>1、图片选择框，源文件：<a href="Ext.ux.ImageChooser.js">Ext.ux.ImageChooser.js</a> &nbsp;&nbsp;&nbsp;&nbsp;示例文件：<a href="ImageChooser.js">ImageChooser.js</a><br>CSS样式：<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Ext.ux.ImageChooser.css">Ext.ux.ImageChooser.css</a>
+				</li>
+				<li>2、图片显示域，源文件：<a href="Ext.ux.form.ImageField.js">Ext.ux.form.ImageField.js</a> &nbsp;&nbsp;&nbsp;&nbsp;
+				</li>
+				<li>3、例子文件：<a href="main.js">main.js</a> &nbsp;&nbsp;&nbsp;&nbsp;CSS样式：
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="style.css">style.css</a>
+				</li>
+				<li>4、数据源：
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{images:[{name:'alcatel.gif',url:'images/alcatel.gif'},{name:'cisco.gif',url:'images/cisco.gif'},{name:'h3c.gif',url:'images/h3c.gif'},{name:'huawei.gif',url:'images/huawei.gif'},{name:'nortel.gif',url:'images/nortel.gif'},{name:'Servercisco.gif',url:'images/Servercisco.gif'},{name:'Serverh3c.gif',url:'images/Serverh3c.gif'},{name:'Serverhp.gif',url:'images/Serverhp.gif'},{name:'Serveribm.gif',url:'images/Serveribm.gif'}]}
+				</li>
+			</ul>
+		</div>
+		<br>
+		<div id="imageChooser" style="padding: 10px 10px 10px 20px;"></div>
+		<script type="text/javascript" src="main.js"></script>
+		<br>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<title>玉琴蝶园 - Ext JS 3.1 例子 之下拉框扩展</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<body>
+		<div style="padding: 10px 10px 10px 20px;">
+			自定义Form中DIVField控件的的例子。
+		</div>
+		<div id="divfieldForm" style="padding: 10px 10px 10px 20px;"></div>
+		<script type="text/javascript">
+			//自定义控件，使其支持DIV
+			Ext.form.divField = Ext.extend(Ext.BoxComponent, {   
+		    	onRender : function(ct, position){
+		        if(!this.el){
+		            this.el = document.createElement('div');
+			        // 拷贝属性和事件
+			        for(var p in this.divConfig){
+			        	this.el[p] = this.divConfig[p];
+			        }
+		        }
+		        Ext.form.Label.superclass.onRender.call(this, ct, position);   
+		       }   
+		    }); 
+			Ext.reg('divfield', Ext.form.divField);
+		
+			var form = new Ext.form.FormPanel({
+				renderTo : 'divfieldForm',
+				title    : '测试divField',
+				height   : 200,
+				width    : 400,
+				items    : [{
+					xtype : 'divfield',
+					divConfig: {
+						onclick   : function(){Ext.Msg.alert("提示","触发了onclick！");},
+						innerHTML : '<a href="http://leadergxg.25291.84g.com/ExtJs/"><img src="http://leadergxg.25291.84g.com/ExtJs/style/images/logo_small.png" border=0></img></a>ExtJs示例之自定义组件'
+					}
+				}]
+			});
+		</script>
+	</body>
+</html>

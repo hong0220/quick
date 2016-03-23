@@ -1,0 +1,2 @@
+按钮不可点击
+$("button").attr("disabled", "true");

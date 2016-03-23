@@ -1,0 +1,40 @@
+<html>
+	<title>玉琴蝶园 - Ext JS 3.1 例子 之GroupPropertyGrid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../../../style/main.css" />
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+			<div class="loading-indicator">
+				<img src="../../../../style/images/extanim32.gif" width="32"
+					height="32"
+					style="margin-right: 8px; float: left; vertical-align: top;" />
+				Ext 3.1 - 组件例子
+				<br />
+				<span id="loading-msg">正在载入...</span>
+			</div>
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/css/ext-all.css" />
+
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-base.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-all.js"></script>
+		<script type="text/javascript" src="Ext.ux.grid.GroupPropertyGrid.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+
+		<div style="padding: 10px 10px 10px 20px;">
+			groupPropertyGrid的例子。此组件是来自网上扩展，例子是我写的。<br>具体的一些PropertyGrid的操作，可以参看基本组件里面的ProperGrid的例子。<br>例子文件下载：
+			<ul>
+				<li>1、扩展文件：<a href="Ext.ux.grid.GroupPropertyGrid.js">Ext.ux.grid.GroupPropertyGrid.js</a></li>
+				<li>2、示例文件：<a href="GroupPropertyGrid.js">GroupPropertyGrid.js</a></li>
+			</ul>
+		</div>
+		<br />
+		<div id="groupPropertyGrid" style="padding: 10px 10px 10px 20px;"></div>
+		<br />
+		<script type="text/javascript" src="GroupPropertyGrid.js"></script>
+	</body>
+</html>

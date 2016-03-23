@@ -1,0 +1,85 @@
+    <!--Emmet基础介绍-->
+    <!--ul>li{blulet$$}*10-->
+    <ul>
+        <li>blulet01</li>
+        <li>blulet02</li>
+        <li>blulet03</li>
+        <li>blulet04</li>
+        <li>blulet05</li>
+        <li>blulet06</li>
+        <li>blulet07</li>
+        <li>blulet08</li>
+        <li>blulet09</li>
+        <li>blulet10</li>
+    </ul>
+
+    <!--Emmet生成HTML标签元素-->
+    <!--div>ul>li-->
+
+    <!--Emmet生成同级元素-->
+    <!--div+p+bq-->
+
+    <!--Emmet返回父级元素-->
+    <!--div>p>span+em^bq-->
+    <!--div>p>span+em^^bq-->
+
+    <!--Emmet生成重复的元素-->
+    <!--ul>li*10-->
+
+    <!--Emmet的组合操作符-->
+    <!--div>(header>ul>li*2>a)+footer>p-->
+    <!--(div>dl>(dt+dd)*3)+footer>p-->
+
+    <!--Emmet属性操作符之ID和CLASS-->
+    <!--div#header+div.page+div#footer.class1.class2.class3-->
+
+    <!--Emmet属性操作符之自定义属性-->
+    <!--td[title=hello colspan=3]-->
+
+    <!--Emmet自动生成编号-->
+    <!--ul>li.item$*10-->
+    <!--ul>li.item$$$*5-->
+
+    <!--Emmet生成反向编号元素和指定编号开始的元素-->
+    <!--ul>li.item$@-*5-->
+    <!--ul>li.item$@3*5-->
+    <!--ul>li$@-3*5-->
+
+    <!--Emmet生成标签内容-->
+    <!--a{更多信息}-->
+    <!--a>{更多信息}-->
+    <!--a{click}+b{here}-->
+    <!--a>{click}+b{here}-->
+
+    <!--(header>ul.nav>li*5)+footer-->
+
+    <!--Emmet标签模糊输入-->
+    <!--.wrap>.content-->
+    <!--ul 和 ol中可以不指定li元素-->
+    <!--table, tbody, thead和tfoot中可以不指定tr元素-->
+    <!--tr中可以不指定td元素-->
+    <!--select和optgroup中可以不指定option元素-->
+
+    <!--以下命令都是等价的：-->
+    <!--.wrap>.content	 div.wrap>div.content-->
+    <!--em>.info	 em>span.info-->
+    <!--ul>.item*3	 ul>li.item*3-->
+    <!--table>#row$*4>[colspan=2]	 table>tr#row$*4>td[colspan=2]-->
+
+    <!--Emmet生成占位文字（Dummy文字）-->
+    <!--lipsum-->
+    <!--p*4>lorem-->
+    <!--ul>lorem25.item*3-->
+
+    <!--Emmet生成针对不同浏览器带有特定前缀的CSS-->
+    <!-- -bdrs-->
+    <!--@kf-->
+    <!-- -chrorme-foo-->
+
+    <!--Emmet快速生成CSS渐变代码-->
+    <!--lg(left, #CCC 30%, orange)-->
+    <!--image-border: lg(left, #CCC 50%, orange)-->
+
+    <!--Emmet模糊搜索快速生成CSS代码-->
+    <!--ov:h-->
+    <!--d:i-->

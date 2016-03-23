@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS Demo</title>
+    <style>
+        i {
+            color: orange;
+        }
+    </style>
+    <script src="js/angular.min.js"></script>
+</head>
+<body ng-app="myfirstapp">
+<div ng-controller="HelloController">
+    <h1>你好，<i>{{sayHello.info}}</i></h1>
+</div>
+<script>
+    angular.module("myfirstapp", [])
+            .controller("HelloController", function ($scope) {
+                $scope.sayHello = {};
+                $scope.sayHello.info = "我是AngularJS框架";
+            });
+</script>
+</body>
+</html>

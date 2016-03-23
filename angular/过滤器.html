@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--
+过滤器，即Filter用来处理数据，常用的过滤器：
+uppercase：转换为大写
+lowercase：转换为小写
+currency：转换为货币单位
+filter：过滤内容
+orderby：内容排序
+-->
+<div ng-app=""
+     ng-init="books=[{language:'javascript', price:50},
+                        {language:'java', price:30},
+                        {language:'c++', price:70},
+                        {language:'html', price:20}]">
+    过滤：<input type="text" ng-model="book">
+    <ul>
+        <li ng-repeat="book in books | filter: {language:book} | orderBy: 'price'">
+            {{ book.language | uppercase }} : {{book.price | currency}}
+        </li>
+    </ul>
+</div>
+<script src="js/angular.min.js"></script>
+</body>
+</html>

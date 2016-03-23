@@ -1,0 +1,40 @@
+<html>
+	<title>玉琴蝶园 - Ext JS 3.1 例子 之颜色选择</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<body>
+		<div style="padding: 10px 10px 10px 20px;">
+			自定义Form中DIVField控件的的例子。
+		</div>
+		<div id="colorFieldForm" style="padding: 10px 10px 10px 20px;"></div>
+		<script type="text/javascript">
+			Ext.ux.ScriptLoader('js/extention/form/ColorField/Ext.form.ColorField.js',false);
+			Ext.ux.CssLoader('js/extention/form/ColorField/Ext.form.ColorField.css',false);
+			
+			var cf = new Ext.form.ColorField({
+				fieldLabel: '颜色',
+				id: 'colorField',
+				width : 150,
+				showHexValue:true
+			});
+			var colorFieldForm = new Ext.form.FormPanel({
+				title: '颜色选择器',
+				labelAlign: 'right',
+				labelWidth: 55,
+				width: 400,
+				frame: true,
+				renderTo: "colorFieldForm",
+				bodyStyle: 'padding:10px 0 10px 5px;',
+				buttonAlign : "center",
+				items: [cf],
+				buttons:[{
+					id:'submit',
+					text:'确定',
+			        handler:function(){
+						var values = colorFieldForm.form.getValues();
+						alert(values.colorField);
+					}
+				}]		
+			});
+		</script>
+	</body>
+</html>

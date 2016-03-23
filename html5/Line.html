@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas id="gbcanvas" width="400" height="300">
+</canvas>
+<script>
+    var canvas = document.getElementById('gbcanvas'); // 这里通过gbCanvas获取canvas对象
+    context = canvas.getContext('2d'); //这里通过canvas获取处理API的上下文context
+    context.beginPath(); //开始准备绘制新的图形
+    context.moveTo(150, 100); //开始设置起始绘制坐标位置
+    context.lineTo(300, 200); //开始设置直线绘制结束的坐标位置
+    context.lineWidth = 20; //设置直线粗细20px
+    context.strokeStyle = '#DD4814'; //设置直线颜色
+    context.stroke();
+
+    //绘制第一条直线
+    context.beginPath();
+    context.moveTo(100, 70);
+    context.lineTo(300, 70);
+    context.lineWidth = 25;
+    context.strokeStyle = '#DD4814';
+    context.lineCap = 'butt'; //这里设置直线两端的样式为"buttn"，缺省值
+    context.stroke();
+
+    //绘制第二条直线
+    context.beginPath();
+    context.moveTo(100, 140);
+    context.lineTo(300, 140);
+    context.lineWidth = 25;
+    context.strokeStyle = '#DD4814';
+    context.lineCap = 'round'; //这里设置直线两端的样式为"圆角"风格
+    context.stroke();
+
+    //绘制第三条直线
+    context.beginPath();
+    context.moveTo(100, 210);
+    context.lineTo(300, 210);
+    context.lineWidth = 25;
+    context.strokeStyle = '#DD4814';
+    context.lineCap = 'square'; //绘制正方形类型
+    context.stroke();
+</script>
+</body>
+</html>

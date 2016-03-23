@@ -1,0 +1,192 @@
+/*重置*/
+/**{margin:0; padding:0;}*/
+body, div, p, ul, li, dl, dt, dd, h1, a {
+    margin: 0;
+    padding: 0;
+}
+
+/*边框重置*/
+img {
+    border: none;
+}
+
+h1 {
+    font-size: 100%;
+}
+
+html {
+    background: url(../images/bg.gif) repeat-x;
+}
+
+body {
+    background: url(../images/clouds.gif) repeat-x;
+    padding-top: 45px;
+}
+
+#header, #banner, #content, #footer {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#header {
+    overflow: hidden;
+}
+
+#logo {
+    /*内联元素是不能包含块状元素的*/
+    display: block;
+    width: 220px;
+    height: 54px;
+    float: left;
+    background: #991616;
+}
+
+#logo img {
+    display: block;
+}
+
+#nav {
+    width: 780px;
+    height: 54px;
+    float: left;
+    background: #393838;
+    list-style: none;
+}
+
+#nav li {
+    float: left;
+}
+
+#nav li a {
+    display: block;
+    width: 86px;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+    text-decoration: none;
+    float: left;
+}
+
+#nav li a:hover {
+    color: #fff;
+}
+
+#nav li .navActive {
+    background: url(../images/navHoverBg.png) no-repeat;
+    color: #fff;
+}
+
+#banner {
+    display: block;
+    width: 1000px;
+    height: 292px;
+    margin: 10px auto;
+}
+
+#banner img {
+    display: block;
+    width: 1000px;
+    height: 292px;
+}
+
+#content {
+    overflow: hidden;
+    background: #eaeaea;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+#leftArticle, #rightInfo {
+    margin: 10px;
+    float: left;
+    display: inline;
+}
+
+#leftArticle {
+    width: 660px;
+}
+
+#articlePicA, #articlePicA img {
+    display: block;
+    width: 660px;
+    height: 230px;
+}
+
+#leftArticle h1 {
+    margin: 20px 0;
+    font-size: 24px;
+    font-family: "΢���ź�", "����";
+}
+
+#leftArticle h1 a {
+    color: #900;
+    text-decoration: none;
+}
+
+#leftArticle h1 a:hover {
+    text-decoration: underline;
+}
+
+#leftArticle p {
+    color: #333;
+    text-indent: 2em;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+#rightInfo {
+    width: 300px;
+}
+
+#rightInfo dl {
+    margin-bottom: 10px;
+}
+
+#rightInfo dl dt {
+    background: url(../images/title.jpg) no-repeat;
+    height: 32px;
+    line-height: 32px;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: bold;
+    text-indent: 20px;
+}
+
+#rightInfo dl dd {
+    height: 24px;
+    line-height: 24px;
+    background: url(../images/dot.gif) no-repeat 7px 10px;
+    text-indent: 16px;
+}
+
+#rightInfo dl dd a {
+    color: #333;
+    text-decoration: none;
+}
+
+#rightInfo dl dd a:hover {
+    color: #900;
+    text-decoration: underline;
+}
+
+#footer {
+    background: #393838;
+    height: 52px;
+    line-height: 18px;
+    margin-top: 10px;
+    padding-top: 18px;
+    text-align: center;
+    color: #ccc;
+    font-size: 12px;
+}
+
+#footer a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}

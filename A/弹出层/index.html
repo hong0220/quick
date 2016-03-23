@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>慕课网-弹出层</title>
+    <style type="text/css">
+        #mask {
+            background-color: #ccc;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #login {
+            position: fixed;
+            z-index: 1001;
+        }
+
+        .loginCon {
+            position: relative;
+            width: 670px;
+            height: 380px;
+            background: url(img/loginBg.png) #2A2C2E center center no-repeat;
+        }
+
+        #close {
+            background: url(img/close.png) no-repeat;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            position: absolute;
+            right: 5px;
+            top: 15px;
+            text-indent: -999em;
+        }
+    </style>
+    <script>
+        function openNew() {
+            //获取页面的高度和宽度
+            var sWidth = document.body.scrollWidth;
+            var sHeight = document.body.scrollHeight;
+            //获取页面的可视区域高度和宽度
+            var wHeight = document.documentElement.clientHeight;
+
+            //创建一个遮罩层，设置ID为mask
+            var oMask = document.createElement("div");
+            oMask.id = "mask";
+            //设置遮罩层的宽度和高度，使页面被完全遮罩
+            oMask.style.height = sHeight + "px";
+            oMask.style.width = sWidth + "px";
+            //在页面里插入创建的遮罩层
+            document.body.appendChild(oMask);
+
+            var oLogin = document.createElement("div");
+            oLogin.id = "login";
+            oLogin.innerHTML = "<div class='loginCon'><div id='close'>点击关闭</div></div>";
+            //必须插入dom
+            document.body.appendChild(oLogin);
+
+            //获取登陆框的宽和高
+            var dHeight = oLogin.offsetHeight;
+            var dWidth = oLogin.offsetWidth;
+            //设置登陆框的left和top
+            oLogin.style.left = sWidth / 2 - dWidth / 2 + "px";
+            oLogin.style.top = wHeight / 2 - dHeight / 2 + "px";
+
+            //点击关闭按钮
+            var oClose = document.getElementById("close");
+            //点击登陆框以外的区域也可以关闭登陆框
+            oClose.onclick = oMask.onclick = function () {
+                document.body.removeChild(oLogin);
+                document.body.removeChild(oMask);
+            };
+        }
+
+        window.onload = function () {
+            var oBtn = document.getElementById("btnLogin");
+            //点击登录按钮
+            oBtn.onclick = function () {
+                openNew();
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<button id="btnLogin" hidefocus="true" class="login-btn">登录</button>
+</body>
+</html>

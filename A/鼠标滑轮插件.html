@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../../Resource/js/jq_mousewheel.min.js"></script>
+    <script>
+        //以上为鼠标滑轮插件
+        $(document).ready(function () {
+            var floor_top = 0; //申明楼层TOP值
+            var floor_bool = 0; //滚动布尔值
+            var floor_h = 0; //申明楼层高度值
+            var floor_index = 0; //申明楼层索引值
+            var all_floor = $(".floor").length; //获取楼层数
+            var floor_li_h = $("#floor_li_wrap").height(); //获取右边小按钮高度
+            function set_main() {
+                var window_h = $(window).height(); //获取窗口高度
+                var window_w = $(window).width(); //获取窗口宽度
+                $("#main,.floor").css({ //设置显示区域和楼层的高宽（是一样的）
+                    "width": window_w + "px",
+                    "height": window_h + "px"
+                });
+                $("#floor_box").css("top", -(window_h * floor_index) + "px"); //根据当前的窗口高度和楼层索引，算出楼层的TOP值
+                $("#floor_li_wrap").css({//根据当前的窗口高度,计算右边小按钮的TOP值,窗口变化时移动小按钮到正确的位置
+                    "top": (window_h / 2) - (floor_li_h / 2) + "px",
+                    "right": "20px"
+                });
+            }
+
+            set_main(); //页面准备好了就运行一次，设置初始值
+            $(window).resize(function () { //监听窗口大小变化
+                set_main();
+            })
+            function change_list() {
+                $("#floor_li_wrap li").eq(floor_index).find("a").addClass("this_floor_li_a"); //添加当前按钮样式
+                $("#floor_li_wrap li").eq(floor_index).siblings().find("a").removeClass("this_floor_li_a"); //移除其它当前按钮样式
+            }
+
+            function change_page(i, ii) { //页面滚动效果
+                floor_h = $("#main").height(); //获取显示区域高度
+                var all_floor_h = -(floor_h * (all_floor - 1)); //申明楼层总高度
+                var floor_box = $("#floor_box");
+                if (eval(i)) {
+                    floor_bool = 1;
+                    eval(ii);
+                    if (floor_index < 0) {
+                        floor_index = 0;
+                    } else if (floor_index >= (all_floor - 1)) {
+                        floor_index = all_floor - 1;
+                    }
+                    floor_top = -(floor_index * floor_h)
+                    floor_box.animate({
+                        top: floor_top + "px"
+                    }, 1000, "swing", function () {
+                        floor_bool = 0;
+                    })
+                    change_list();
+                }
+            }
+
+            $(document).bind("mousewheel", function mouseW(event, delta) { //绑定滑轮事件，并向 页面切换 传递参数，这里是传递的字符串，前辈告诫说不要这样传，但是目前还没想到其它方法，有一个比较繁琐的写法，因为重复的代码非常多，所以想了这么个办法。
+                if (delta == (-1) && floor_bool == 0) {
+                    var i = "floor_index < all_floor";
+                    var ii = "floor_index += 1";
+                    change_page(i, ii)
+                } else if (delta == (1) && floor_bool == 0) {
+                    var i = "floor_index > 0";
+                    var ii = "floor_index -= 1";
+                    change_page(i, ii)
+                }
+            });
+            $("#floor_li_wrap li").on("click", function () {
+                floor_index = $(this).index();//获取当前li的索引号
+                fllor_top = -(floor_index * floor_h);
+                floor_h = $("#main").height(); //获取显示区域高度
+                $("#floor_box").animate({
+                    top: fllor_top + "px"
+                }, 1000);
+                change_list();
+            })
+        })
+    </script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style-type: none;
+        }
+
+        #main {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #floor_box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        .floor {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #floor_1 {
+            background: url('http://www.iunios.com/static/index/img/index/s1_bg2.jpg') no-repeat 0/cover;
+        }
+
+        #floor_2 {
+            background: #548C00;
+        }
+
+        #floor_3 {
+            background: #0F7577;
+        }
+
+        #floor_4 {
+            background: #FF8000;
+        }
+
+        #floor_li_wrap {
+            width: 10px;
+            height: auto;
+            position: fixed;
+            right: 20px;
+            top: 200px
+        }
+
+        #floor_li_wrap li {
+            display: block;
+            width: 10px;
+            height: 10px;
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+
+        .floor_li_a {
+            display: block;
+            width: 6px;
+            height: 6px;
+            margin: 2px;
+            border-radius: 50%;
+            background: #E0E0E0;
+        }
+
+        .this_floor_li_a {
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            background: #0072E3;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main">
+    <div id="floor_box">
+        <div id="floor_1" class="floor"></div>
+        <div id="floor_2" class="floor"></div>
+        <div id="floor_3" class="floor"></div>
+        <div id="floor_4" class="floor"></div>
+    </div>
+    <div id="floor_li_wrap">
+        <ul>
+            <li>
+                <a class="floor_li_a this_floor_li_a"></a>
+            </li>
+            <li>
+                <a class="floor_li_a"></a>
+            </li>
+            <li>
+                <a class="floor_li_a"></a>
+            </li>
+            <li>
+                <a class="floor_li_a"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+.page-normal {
+    color: #ff6500;
+    text-align: center;
+    /*修复行内元素之间空隙间隔*/
+    font-size: 0;
+}
+
+.page-normal a, .page-normal .page-current, .page-normal .page-prev, .page-normal .page-next {
+    padding: 5px 7px;
+    font-size: 14px;
+    margin-left: 10px;
+    border: 1px solid #ff9600;
+    color: #ff6500;
+}
+
+/*去除下划线*/
+.page-normal a {
+    text-decoration: none;
+}
+
+/*背景高亮*/
+.page-normal a:hover, .page-normal .page-current {
+    background: #ffbe94;
+}
+
+.ellipsis {
+    font-size: 14px;
+    border: none;
+    margin-left: 8px;
+}
+
+/*小图标*/
+.page-next i, .page-prev i {
+    cursor: pointer;
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    background: url(img/bg_hotsale.gif);
+}
+
+.page-prev i {
+    background-position: -80px -608px;
+    margin-right: 3px;
+}
+
+.page-next i {
+    background-position: -62px -608px;
+    margin-left: 3px;
+}

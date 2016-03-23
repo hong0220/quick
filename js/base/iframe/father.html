@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>父页面给iframe中的子页面传值，把值写入子页面的文本框里</title>
+</head>
+<body>
+<iframe id="son" name="son" src="son.html" width="400" height="200"></iframe>
+<br/>
+<input type="button" value="给子页面表单中id为b的文本框赋值" onclick="fuzhi()"/>
+
+<script src="../../resource/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+    function fuzhi() {
+        $('#son').contents().find("#b").val("父页面传过来的值！");
+    }
+</script>
+</body>
+</html>

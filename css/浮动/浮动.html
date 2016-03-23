@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title></title>
+    <style>
+        body, div {
+            padding: 0;
+            margin: 0;
+        }
+
+        #redBlock, #blueBlock {
+            height: 200px;
+            margin-top: 20px;
+            margin-left: 20px;
+            float: left;
+        }
+
+        #redBlock {
+            width: 200px;
+            background: #900;
+            /*IE6双倍边距BUG*/
+            /*1.要为块状元素*/
+            /*2.要左侧浮动*/
+            /*3.要有左外边距(margin-left)*/
+            display: inline;
+        }
+
+        #blueBlock {
+            width: 300px;
+            background: #009;
+        }
+
+    </style>
+</head>
+
+<body>
+<div id="redBlock"></div>
+<div id="blueBlock"></div>
+</body>
+</html>

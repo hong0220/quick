@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>无标题页</title>
+    <style type="text/css">
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="jquery/jquery-1.2.6.js"></script>
+    <script type="text/javascript">
+
+        //这个方法把ajax方法封装一下，方便调用。
+        function myajax() {
+            //var obj=jsonData();
+            $.ajax({
+                type: 'post',
+                url: 'ajax.aspx',
+                data: jsonData(),//可以直接加一个函数名。
+                dataType: 'json',
+                beforeSend: beforecall,
+                success: callback
+            });
+        }
+        //封装json数据，为了代码清晰
+        function jsonData() {
+            var jsonStr = "({";
+            jsonStr += "\"name\":";
+            jsonStr += "\"tree\"";
+            jsonStr += ",";
+            jsonStr += "\"id\":";
+            jsonStr += "\"123\"";
+            jsonStr += "})";
+            return eval(jsonStr);//关键在于转换。
+        }
+        //调用前方法,不成功
+        function beforecall() {
+            $('#wait').addClass("show").append('调出中...');
+            //alert('');//测试是否调用
+        }
+        //回调函数
+        function callback(data) {
+            $('#response').append(data.name + data.id);
+            $('#wait').css("display", "none");
+        }
+        //onload()事件
+        $(function () {
+            $('#confirm').click(myajax);
+        })
+    </script>
+</head>
+<body>
+<div id="confirm">点击</div>
+<div id="response">接收后台数据</div>
+<div id="wait" class="hide">hello</div>
+</body>
+</html> 

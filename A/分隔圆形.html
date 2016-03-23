@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Split it!
+        Author: zzliux
+        Blog: http://www.zzliux.com
+    -->
+    <title>Split it!</title>
+    <link rel="shortcut icon" href="./favicon.ico">
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+    <style>
+        div {
+            float: left;
+            border-radius: 50%;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .theMax {
+            clear: both;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="0" class=".theMax"></div>
+<script>
+    var smallWidth = 0;
+    var isDisappear = [];
+    var n = 0;
+    var k = 0;
+    var startTime;
+    var endTime;
+    var width = window.innerHeight < window.innerWidth ? window.innerHeight : window.innerWidth;
+    width -= 30;
+    var ball = document.getElementById('0');
+    ball.style.width = width + 'px';
+    ball.style.height = width + 'px';
+    document.body.style.paddingTop = window.innerHeight - window.innerWidth > 0 ? (window.innerHeight - window.innerWidth) / 2 + 'px' : 15 + 'px';
+    document.body.style.width = width + 'px';
+    ball.style.background = randomColor();
+    ball.addEventListener('mouseover', split, false);
+    document.body.addEventListener('touchmove', touchSplit, false);
+    function split(e) {
+        if (n == 0) {
+            startTime = (new Date()).valueOf();
+        }
+        e.target.style.backgroundColor = '#fff';
+        t = e.target.id;
+        e.target.id = null;
+        e.target.removeEventListener('mouseover', split, false);
+        var width = parseInt(e.target.clientWidth / 2);
+        var inner = '<div id="' + (t) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 1) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 2) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 3) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div>';
+        e.target.innerHTML = inner;
+        var ball = document.getElementById(t);
+        if (ball.clientWidth >= 20) {
+            ball.addEventListener('mouseover', split, false);
+        }
+        for (var i = n + 1; i < n + 4; i++) {
+            var ball = document.getElementById(i);
+            if (ball.clientWidth < 20) {
+                smallWidth = ball.clientWidth;
+                break;
+            }
+            ball.addEventListener('mouseover', split, false);
+        }
+        n += 4;
+        k += 3;
+        showMess();
+    }
+    function touchSplit(e) {
+        if (n == 0) {
+            startTime = (new Date()).valueOf();
+        }
+        var ball = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+        if (isDisappear[ball.id] || !ball.id) {
+            return;
+        }
+        if (ball.clientWidth < 20) {
+            smallWidth = ball.clientWidth;
+            return;
+        }
+        t = ball.id;
+        ball.id = null;
+        var width = parseInt(ball.clientWidth / 2);
+        ball.style.backgroundColor = '#fff';
+        isDisappear[ball.id] = true;
+        ball.removeEventListener('touchmove', touchSplit, false);
+        var inner = '<div id="' + (t) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 1) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 2) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div><div id="' + (n + 3) + '" style="width:' + (width) + 'px;height:' + (width) + 'px;background:' + randomColor() + ';"></div>';
+        ball.innerHTML = inner;
+        n += 4;
+        k += 3;
+        showMess();
+    }
+    function randomColor() {
+        var r = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+        var res = '#';
+        for (var i = 0; i < 6; i++) {
+            res = res + r[Math.round(Math.random() * 100) % 16];
+        }
+        return res;
+    }
+    function showMess() {
+        var lineNum = parseInt(width / smallWidth / 4) * 4;
+        if (k == lineNum * lineNum - 1) {
+            endTime = (new Date()).valueOf();
+            console.dir(endTime);
+            var time = (endTime - startTime) / 1000 + 's';
+            alert('你淫了!共浪费了' + time);
+        }
+    }
+</script>
+</body>
+</html>

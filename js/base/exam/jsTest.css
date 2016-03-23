@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+th {
+    color: #ffffff;
+    background-color: #000000;
+    text-decoration: none;
+}
+
+tr:hover {
+    background: #ffff00;
+    text-decoration: underline
+}

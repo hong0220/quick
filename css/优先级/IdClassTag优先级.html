@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /*行内样式 > 内嵌样式 > 链接样式 > 导入样式*/
+        /*ID选择器 > class选择器 > 标签选择器*/
+        #gb {
+            color: orange;
+        }
+
+        p {
+            color: green;
+        }
+
+        .parent p {
+            background: green;
+        }
+
+        .parent .child {
+            background: orange;
+        }
+
+        /*组合CSS的选择器*/
+        .btn {
+            font-size: 14px;
+            padding: 15px;
+            width: 150px;
+        }
+
+        .info {
+            background: yellow;
+        }
+
+        .warning {
+            background: orange;
+        }
+
+        .danger {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<p id="gb">hello gbtags.com</p>
+
+<div class="parent">
+    <p>1</p>
+
+    <p>2</p>
+
+    <p class="child">3</p>
+</div>
+<button class="btn info">info</button>
+<button class="btn warning">warning</button>
+<button class="btn danger">danger</button>
+</body>
+</html>

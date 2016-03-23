@@ -1,0 +1,634 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>创建用户表单例子</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+    	<div  style="padding: 10px 10px 10px 20px;">创建用户表单例子。增加一些比较复杂的操作。数据提交没有做。这个可以参考前面的form例子。
+		</div>
+		<br/>
+		<div id="createUserForm" style="padding: 10px 10px 10px 20px;"></div>
+		</div>
+		<script>
+			
+/**
+ * 市下拉框，根据省份的选择联动
+ */
+var cityStore = new Ext.data.Store({
+	proxy : new Ext.data.HttpProxy({
+		url : 'js/widgets/form/getCity.php',
+		method : 'POST'
+	}),
+	reader : new Ext.data.JsonReader({
+		totalProperty : 'totalProperty',
+		root : 'cities'
+	}, [{
+		name : 'code'
+	}, {
+		name : 'name'
+	}]),
+	remoteSort : false,
+	autoLoad : false
+});
+var CityCb = function() {
+	CityCb.superclass.constructor.call(this, {
+		hideLabel : true,
+	    valueField :"code",
+	    displayField: "name",
+	    store: cityStore,
+        mode: 'remote',
+	    forceSelection: true,
+	    emptyText:'请选择市...',
+	    hiddenName:'city',
+	    editable: false,
+	    triggerAction: 'all'
+    });
+};
+Ext.extend(CityCb, Ext.form.ComboBox);
+/**
+ * 省下拉框，加上了对市的联动
+ */
+var ProvinceCb = function(cityCb) {
+	ProvinceCb.superclass.constructor.call(this, {
+		fieldLabel: '&nbsp;&nbsp;&nbsp;籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贯',
+	    valueField :"code",
+	    displayField: "name",
+	    store: new Ext.data.SimpleStore({
+            fields: ["code", "name"],
+            data: [['hebei', '河北'], ["henan", '河南']]
+        }),
+        mode: 'local',
+	    forceSelection: true,
+	    emptyText:'请选择所在省...',
+	    hiddenName:'province',
+	    editable: false,
+	    triggerAction: 'all',
+	    listeners:{
+	        select : function(combo, record, index){
+	        	/** 远程加载数据 **/
+			    cityStore.proxy= new Ext.data.HttpProxy({url: 'js/widgets/form/getCity.php?province=' + combo.value});      
+			    cityStore.load();
+			    cityCb.reset();
+			}
+	    }
+    });
+};
+Ext.extend(ProvinceCb, Ext.form.ComboBox);
+/**
+ * 群组选择表格
+ */
+var GroupGrid = function() {
+	GroupData = [
+	    ['网络组','负责网络的组建和维护'],
+	    ['财务部','负责财务'],
+		['网管组','负责网管软件的开发'],
+	    ['流量组','负责流量分析仪的研发'],
+		['UI组','负责ext的封装']
+	];
+	GroupReader = new Ext.data.ArrayReader({}, [
+       {name: 'groupName'},
+       {name: 'discription'}
+    ]);
+	Groupsm = new Ext.grid.CheckboxSelectionModel();
+	GroupGrid.superclass.constructor.call(this, {
+        store: new Ext.data.Store({
+            reader: GroupReader,
+            data: GroupData
+        }),
+        cm: new Ext.grid.ColumnModel([
+            Groupsm,
+            {id:'groupName',header: "组别", width: 120, sortable: true, dataIndex: 'groupName'},
+            {header: "说明", width: 325, sortable: true, dataIndex: 'discription'}
+        ]),
+        sm: Groupsm,
+        width:'100%',
+        height:'100%',
+        frame:true
+	})
+}
+Ext.extend(GroupGrid, Ext.grid.GridPanel);
+/**
+ * 群组窗口
+ */
+var GroupWin = function(el) {
+	var groupGrid = new GroupGrid();
+	GroupWin.superclass.constructor.call(this, {
+		title: '选择群组',
+		buttonAlign: 'center',
+        layout : 'fit',
+        width  : 500,
+        height : 300,
+        plain  : true,
+		modal  : true, //模态窗口
+        items  : [groupGrid],
+        closeAction:'hide',
+        buttons: [{
+            text   : '确定',
+			scope  : this,
+			handler: function getChoiceGroup(){
+				this.setTextFieldValue(groupGrid, el);
+			}
+        },{
+            text: '关闭',
+			scope  : this,
+            handler: this.close
+        }]
+	});
+}
+Ext.extend(GroupWin, Ext.Window, {
+	setTextFieldValue : function(g,el) {
+		var row = g.selModel.getSelections();
+		var names = [];
+		for(var i=0,len=row.length;i<len;i++){
+			names.push(row[i].get("groupName"));
+		}
+		el.setRawValue(names.join(','));
+		this.close();
+	}
+});
+
+var group = new Ext.form.TextField({
+    fieldLabel: '　群　　组',
+    name: 'groupNames',
+    anchor: '99%'
+});
+
+var vipNum = new Ext.form.TextField({
+    fieldLabel: 'VIP卡号',
+    name: 'vipNum',
+    anchor: '90%'
+}).disable();
+	
+var InfoTabpanel = function() {
+    InfoTabpanel.superclass.constructor.call(this, {
+		activeTab  : 0,
+		height     : 200,
+		plain      : true,
+		tabPosition: 'top',
+		border     : true,
+		frame      : true,
+		defaults   : { autoScroll: true },
+		enableTabScroll : true,
+		items      : [{
+			title   : "教育经历",
+			closable: true,
+			style   : "padding: 5px 5px 5px 5px;",
+			layout  : "form",
+			items: [{
+                xtype: 'textfield',
+                fieldLabel: '大&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学',
+                name: 'high',
+                anchor: '94%'
+            },{
+                xtype: 'textfield',
+                fieldLabel: '中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学',
+                name: 'mid',
+                anchor: '94%'
+            },{
+                xtype: 'textfield',
+                fieldLabel: '小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学',
+                name: 'primary',
+                anchor: '94%'
+            }]
+		},{
+			title   : "所属群组",
+			closable: true,
+			layout  : "fit",
+			style   : "padding: 5px 5px 5px 5px;",
+			items   : [new GroupGrid()]
+		}]
+	});
+};
+Ext.extend(InfoTabpanel, Ext.TabPanel);
+var cityCb = new CityCb();
+var createUserForm = new Ext.form.FormPanel({
+    labelAlign: 'left',
+    title: '新建用户',
+    buttonAlign: 'right',
+    bodyStyle: 'padding:5px',
+    width: 600,
+    frame: true,
+    labelWidth: 80,
+    items: [{
+        xtype: 'fieldset',
+        title: '基本信息',
+        layout: 'column',
+        height: '100%',
+        items: [{
+            columnWidth: .25,
+            layout: 'form',
+            border: false,
+            items: [{
+                style: 'margin-top:5px',
+                xtype: 'radio',
+                fieldLabel: '&nbsp;&nbsp;&nbsp;VIP用户',
+                boxLabel: '是',
+                name: 'innerUser',
+                inputValue: '是',
+                anchor: '95%',
+                listeners : {
+                	check : function(rdo,checked) {
+						checked == true ? vipNum.enable() : vipNum.disable();
+					}
+                }
+            }]
+        }, {
+            columnWidth: .25,
+            layout: 'form',
+            labelWidth: 0,
+            labelSeparator: '',
+            hideLabels: true,
+            border: false,
+            items: [{
+                style: 'margin-top:5px',
+                xtype: 'radio',
+                fieldLabel: '',
+                boxLabel: '否',
+                checked: true,
+                name: 'innerUser',
+                inputValue: '否'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items : [vipNum]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items : [{
+                xtype: 'textfield',
+                fieldLabel: '<span style="color:red;">*</span> 姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名',
+                name: 'fullName',
+                vtype: 'fullName',
+                allowBlank: false,
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '帐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号',
+                name: 'account',
+                vtype: 'account',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '<span style="color:red;">*</span> 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码',
+                name: 'password',
+                vtype: 'password',
+                allowBlank: false,
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '确认密码',
+                name: 'repassword',
+                vtype: 'repassword',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .25,
+            layout: 'form',
+            border: false,
+            items: [{
+                style: 'margin-top:5px',
+                xtype: 'radio',
+                fieldLabel: '&nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别',
+                boxLabel: '男',
+                name: 'gender',
+                checked: true,
+                inputValue: '男',
+                anchor: '95%'
+            }]
+        }, {
+            columnWidth: .25,
+            layout: 'form',
+            labelWidth: 0,
+            labelSeparator: '',
+            hideLabels: true,
+            border: false,
+            items: [{
+                style: 'margin-top:5px',
+                xtype: 'radio',
+                fieldLabel: '',
+                boxLabel: '女',
+                name: 'gender',
+                inputValue: '女'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '身份证号',
+                name: 'idCard',
+                vtype: 'idCard',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'combo',
+                store: new Ext.data.SimpleStore({
+                    fields: ["retrunValue", "displayText"],
+                    data: [[1, '水利部'], [2, '人才中心'], [3, '南水北调']]
+                }),
+                valueField: "retrunValue",
+                displayField: "displayText",
+                mode: 'local',
+                forceSelection: true,
+                blankText: '请选择所属单位',
+                emptyText: '请选择所属单位',
+                hiddenName: 'organization',
+                editable: false,
+                triggerAction: 'all',
+                allowBlank: false,
+                fieldLabel: '　单　　位',
+                name: 'organization',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'combo',
+                store: new Ext.data.SimpleStore({
+                    fields: ["retrunValue", "displayText"],
+                    data: [[1, '财务部'], [2, 'IT部'], [3, '工程部']]
+                }),
+                valueField: "retrunValue",
+                displayField: "displayText",
+                mode: 'local',
+                forceSelection: true,
+                blankText: '请选择所属部门',
+                emptyText: '请选择所属部门',
+                hiddenName: 'department',
+                editable: false,
+                triggerAction: 'all',
+                allowBlank: false,
+                fieldLabel: '部　　门',
+                name: 'department',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'combo',
+                store: new Ext.data.SimpleStore({
+                    fields: ["retrunValue", "displayText"],
+                    data: [[1, '部长'], [2, '部领导'], [3, '城市水务处'], [4, '出纳'], [5, '处长'], [6, '处级调研员'], [7, '调研员'], [8, '二室副主任'], [9, '二室主任'], [10, '副部长'], [11, '副处'], [12, '副处长'], [13, '副经理'], [14, '副局长'], [15, '副局级'], [16, '副理事长'], [17, '副秘书长'], [18, '副书记'], [19, '副司长'], [20, '副司长'], [21, '副主任'], [22, '副主任科员']]
+                }),
+                valueField: "retrunValue",
+                displayField: "displayText",
+                mode: 'local',
+                forceSelection: true,
+                blankText: '请选择所属职位',
+                emptyText: '请选择所属职位',
+                hiddenName: 'jobPosition',
+                editable: false,
+                triggerAction: 'all',
+                allowBlank: false,
+                fieldLabel: '　职　　位',
+                name: 'jobPosition',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '员工编号',
+                name: 'code',
+                vtype: 'code',
+                anchor: '90%'
+            }]
+        },{
+            columnWidth: .9,
+            layout: 'form',
+            border: false,
+            items: [group]
+        }, {
+            columnWidth: .1,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype : 'panel',
+                border:false,
+				frame : false,
+				html  : ' <div onclick="javascript:new GroupWin(group).show();" style="float:left;"><img src="style/images/group.gif" alt="选择群组" title="选择群组"></div> <div onclick=javascript:group.setValue("");><img src="style/images/delete.gif" alt="清空" title="清空"></div>'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [new ProvinceCb(cityCb)]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [cityCb]
+    	}]
+    }, {
+        xtype: 'fieldset',
+        title: '扩展信息',
+        layout: 'column',
+        height: '100%',
+        collapsed: true,
+        collapsible: true,
+        items: [{
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '　单位电话',
+                name: 'workPhone',
+                vtype: 'workPhone',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '家庭电话',
+                name: 'homePhone',
+                vtype: 'homePhone',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '　移动电话1',
+                name: 'mobile1',
+                vtype: 'mobile1',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '移动电话2',
+                name: 'mobile2',
+                vtype: 'mobile2',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '　传　　真',
+                name: 'fax',
+                vtype: 'fax',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '电子邮件',
+                name: 'email',
+                vtype: 'email',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'combo',
+                store: new Ext.data.SimpleStore({
+                    fields: ["retrunValue", "displayText"],
+                    data: []
+                }),
+                valueField: "retrunValue",
+                displayField: "displayText",
+                mode: 'local',
+                forceSelection: true,
+                blankText: '请选择位置',
+                emptyText: '请选择位置',
+                hiddenName: 'location',
+                editable: false,
+                triggerAction: 'all',
+                allowBlank: false,
+                fieldLabel: '　位　　置',
+                name: 'location',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '楼　　层',
+                name: 'floor',
+                vtype: 'floor',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '　房　　间',
+                name: 'room',
+                vtype: 'room',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: 'IP 地 址',
+                name: 'ip',
+                vtype: 'ip',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'combo',
+                store: new Ext.data.SimpleStore({
+                    fields: ["retrunValue", "displayText"],
+                    data: [[1, '一级'], [2, '二级'], [3, '三级'], [4, '四级'], [5, '五级']]
+                }),
+                valueField: "retrunValue",
+                displayField: "displayText",
+                mode: 'local',
+                forceSelection: true,
+                blankText: '请选择',
+                emptyText: '请选择',
+                hiddenName: 'serviceLevel',
+                editable: false,
+                triggerAction: 'all',
+                allowBlank: false,
+                fieldLabel: '　优先级别',
+                name: 'serviceLevel',
+                anchor: '90%'
+            }]
+        }, {
+            columnWidth: .5,
+            layout: 'form',
+            border: false,
+            items: [{
+                xtype: 'textfield',
+                fieldLabel: '工　　号',
+                name: 'style',
+                vtype: 'style',
+                anchor: '90%'
+            }]
+        }]
+    }, new InfoTabpanel()],
+    buttons: [{
+        text: '保存',
+        handler: function() {
+            Ext.Msg.alert("提示","新建用户成功！");
+        }
+    }, {
+        text: '重置',
+		handler: function (){ 
+			createUserForm.getForm().reset(); //清空输入内容
+		}
+    }]
+});
+createUserForm.render("createUserForm");
+        </script>
+    </body>
+</html>

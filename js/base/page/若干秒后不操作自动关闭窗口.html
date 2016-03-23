@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>若干秒后不操作自动关闭窗口</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        var willClose = true;	//定义一个是否关闭的全局变量
+        //鼠标点击网页
+        function clickBody() {
+            willClose = false;	//但用户鼠标点击网页以后，则把变量置为false
+        }
+        //每隔10秒，执行回调函数
+        setInterval(function () {
+            if (willClose) {		//判断是否需要关闭
+                window.close();	//关闭窗口
+            } else {				//如果点击过，这重新开始计算
+                willClose = true;
+            }
+        }, 10000);
+    </script>
+</head>
+<body style="text-align:center" onclick="clickBody()">
+如果用户10秒钟不单击网页，本窗口将自动关闭。
+</body>
+</html>

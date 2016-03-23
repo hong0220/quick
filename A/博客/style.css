@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+body {
+    font-size: 12px;
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 1.5;
+}
+
+h2 {
+    font-szie: 2em;
+    font-family: 微软雅黑;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#header, #mainbody, #sidebar, #bottom {
+    border: 5px solid #ccc;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+#mainbody {
+    float: left;
+    width: 620px;
+}
+
+#sidebar {
+    float: left;
+    width: 220px;
+    margin-left: 20px;
+}
+
+#bottom {
+    clear: both;
+}

@@ -1,0 +1,46 @@
+﻿<html>
+  <head>
+  	<title>玉琴蝶园 - Ext JS 3.1 例子 之ProgressColumnGrid</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../../../style/main.css"/>
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+			<div class="loading-indicator">
+				<img src="../../../../style/images/extanim32.gif" width="32"
+					height="32"
+					style="margin-right: 8px; float: left; vertical-align: top;" />
+				Ext 3.1 - 组件例子
+				<br />
+				<span id="loading-msg">正在载入...</span>
+			</div>
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/css/ext-all.css" />
+
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-base.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-all.js"></script>
+		<script type="text/javascript" src="Ext.ux.grid.ProgressColumn.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+		<script type="text/javascript" src="ProgressColumnGrid.js"></script>
+		<link rel="stylesheet" type="text/css" href="grid-examples.css" />
+		<link rel="stylesheet" type="text/css" href="Ext.ux.grid.ProgressColumn.css" />
+
+		<div style="padding: 10px 10px 10px 20px;">
+			ProgressColumnGrid的例子。是基于基本组件中复杂Grid写的。ProgressColumn组件是来自网上扩展，例子是我写的。<br>例子文件下载：
+			<ul>
+				<li>1、原例子打包下载（不包含ext-all.js和ext-base.js及ext的css文件）：<a href="Ext.ux.grid.ProgressColumn.rar">Ext.ux.grid.ProgressColumn.rar</a></li>
+				<li>2、示例文件：<a href="ProgressColumnGrid.js">ProgressColumnGrid.js</a></li>
+				<li>3、本示例数据（分页请自己在后台做），这里给出的是数据格式：<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{totalProperty:100,students:[{ "id": "0000", "sex": "female", "name":"学生0", "classs": "05级一班", "scroll": "100" },{ "id": "0001", "sex": "male", "name":"学生1", "classs": "05级一班", "scroll": "99" },{ "id": "0002", "sex": "male", "name":"学生2", "classs": "05级一班", "scroll": "98" },{ "id": "0003", "sex": "female", "name":"学生3", "classs": "05级一班", "scroll": "97" },{ "id": "0004", "sex": "male", "name":"学生4", "classs": "05级一班", "scroll": "96" },{ "id": "0005", "sex": "male", "name":"学生5", "classs": "05级一班", "scroll": "95" },{ "id": "0006", "sex": "female", "name":"学生6", "classs": "05级一班", "scroll": "94" },{ "id": "0007", "sex": "male", "name":"学生7", "classs": "05级一班", "scroll": "93" },{ "id": "0008", "sex": "male", "name":"学生8", "classs": "05级一班", "scroll": "92" },{ "id": "0009", "sex": "female", "name":"学生9", "classs": "05级一班", "scroll": "91" }]}
+				</li>
+			</ul>
+		</div>
+		<br />
+		<div id="progressColumnGrid" style="padding: 10px 10px 10px 20px;"></div>
+		<br />
+	</body>
+</html>

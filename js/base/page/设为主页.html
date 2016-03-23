@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>将网站设为主页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        //设为首页
+        function setMyHomePage() {
+            //判断是否为IE浏览器
+            if (document.all) {
+                //设置body的style.behavior
+                document.body.style.behavior = 'url(#default#homepage)';
+                //设置首页地址
+                document.body.setHomePage('http://www.myhomepage.com');
+            } else if (window.sidebar) {
+                //通过FireFox特有的组件设置首页地址
+                var thePrefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                thePrefs.setCharPref('browser.startup.homepage', 'http://www.myhomepage.com');
+            }
+        }
+    </script>
+</head>
+<body style="text-align:center">
+<!-- 设为首页的链接 -->
+<p><a href='#' onClick="setMyHomePage()">设为首页</a></p>
+</body>
+</html>

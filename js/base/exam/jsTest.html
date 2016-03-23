@@ -1,0 +1,111 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<link href="jsTest.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resource/js/jquery-2.1.3.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#mybutton").click(function () {
+            alert('hello');
+            $.ajax({
+                type: "GET",
+                url: "./text.json",
+                async: false,//true表示异步 false表示同步
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (result) {
+                    alert(result);
+                    $.each(result, function (i, item) {
+                        alert(i + item.name);
+                    });
+                }
+            });
+        });
+    });
+
+    function loadData() {
+        var x = '[{"id" : "1","name" : "Name1","Score" : "20","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "2","name" : "Name2","Score" : "40","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "3","name" : "Name3","Score" : "69","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "4","name" : "Name4","Score" : "47","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "5","name" : "Name5","Score" : "39","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "6","name" : "Name6","Score" : "21","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "7","name" : "Name7","Score" : "20","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "8","name" : "Name8","Score" : "20","CourseName" : "English","StudentSex" : {"sex" : "male"}},'
+                + '{"id" : "9","name" : "Name9","Score" : "80","CourseName" : "English","StudentSex" : {"sex" : "male"}}]';
+
+        var obj = JSON.parse(x);
+        for (var i = 0; i < obj.length; i++) {
+            var tableSelect = document.getElementById("myTable");
+            var table = tableSelect.insertRow(tableSelect.rows.length);
+            table.insertCell(0).innerHTML = obj[i].id;
+            table.insertCell(1).innerHTML = obj[i].name;
+            table.insertCell(2).innerHTML = obj[i].CourseName;
+            table.insertCell(3).innerHTML = obj[i].StudentSex.sex;
+            table.insertCell(4).innerHTML = obj[i].Score;
+            table.insertCell(5).innerHTML = "<a onclick='deleteRow(this)'>删除</a>";
+        }
+    }
+
+    function addData() {
+        var tableSelect = document.getElementById("myTable");
+        var x = tableSelect.rows[tableSelect.rows.length - 1].cells;
+        var table = tableSelect.insertRow(tableSelect.rows.length);
+        table.insertCell(0).innerHTML = parseInt(x[0].innerHTML) + 1;
+        table.insertCell(1).innerHTML = document.getElementById("Name").value;
+        table.insertCell(2).innerHTML = document.getElementById("CourseName").value;
+        table.insertCell(3).innerHTML = document.getElementById("StudentSex").value;
+        table.insertCell(4).innerHTML = document.getElementById("Score").value;
+        table.insertCell(5).innerHTML = "<a onclick='deleteRow(this)'>删除</a>";
+        alert("添加成功");
+    }
+
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById('myTable').deleteRow(i);
+        alert(i + ":删除成功");
+    }
+</script>
+
+<body>
+<a id='mybutton'>hello world</a>
+<table id="myTable" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>CourseName</th>
+        <th>StudentSex</th>
+        <th>Score</th>
+        <td>&nbsp&nbsp&nbsp&nbsp
+        </th>
+    </tr>
+</table>
+<a>上一页</a> 1/5
+<a>下一页</a>
+
+<p>
+    <button onclick="loadData()">得到数据</button>
+</p>
+
+<p>
+    Name:<input type="text" value="hong" id="Name"/>
+</p>
+
+<p>
+    CourseName:<input type="text" value="English" id="CourseName"/>
+</p>
+
+<p>
+    StudentSex:<input type="text" value="male" id="StudentSex"/>
+</p>
+
+<p>
+    Score<input type="text" value="11"
+                onkeyup="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}"
+                id="Score">
+</p>
+<button onclick="addData()">增加数据</button>
+</body>
+</html>

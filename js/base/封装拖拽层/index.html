@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../resource/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: "微软雅黑";
+        }
+
+        #mydialog {
+            border: 1px solid #141414;
+            width: 360px;
+            height: 240px;
+            margin: 5px;
+            /*margin-left: 33%;*/
+            position: absolute;;
+            top: 0;
+            left: 0;
+        }
+
+        #mydialog h4 {
+            background: #141414;
+            height: 45px;
+            color: #fff;
+            /*居中*/
+            line-height: 45px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div id="mydialog">
+    <h4>提示</h4>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var $dialog = $("#mydialog");
+        myCenterDiv($dialog);
+        my_drag($dialog);
+    });
+
+    function my_drag($div) {
+        var idDrag = false;
+        $div.on("mousedown", "h4", function (e) {
+            var x = e.clientX;
+            var y = e.clientY;
+            var left = $div.offset().left;
+            var top = $div.offset().top;
+            idDrag = true;
+            $(document).mousemove(function (e) {
+                if (idDrag) {
+                    var nLeft = left + e.clientX - x;
+                    var nTop = top + e.clientY - y;
+                    $div.css("left", nLeft);
+                    $div.css("top", nTop);
+                }
+            }).mouseup(function () {
+                idDrag = false;
+            });
+        });
+    }
+
+    /* function my_drag($div) {
+     var idDrag = false;
+     $div.mousedown(function (e) {
+     var x = e.clientX;
+     var y = e.clientY;
+     var left = $(this).offset().left;
+     var top = $(this).offset().top;
+     idDrag = true;
+     $(document).mousemove(function (e) {
+     if (idDrag) {
+     var nLeft = left + e.clientX - x;
+     var nTop = top + e.clientY - y;
+     $div.css("left", nLeft);
+     $div.css("top", nTop);
+     }
+     }).mouseup(function () {
+     idDrag = false;
+     });
+     })
+     }*/
+
+    function myCenterDiv($div) {
+        var width = $(window).width();
+        var height = $(window).height();
+        var dWidth = $div.width();
+        var dHeight = $div.height();
+
+        var left = (width - dWidth) / 2;
+        var top = (height - dHeight) / 2;
+        $div.css("left", left);
+        $div.css("top", top);
+    }
+</script>
+</body>
+</html>

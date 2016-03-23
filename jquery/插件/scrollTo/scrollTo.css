@@ -1,0 +1,72 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    background: gainsboro;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.cont {
+    display: block;
+    width: 700px;
+    margin: 0 auto;
+}
+
+.content {
+    display: block;
+    width: 80%;
+    padding: 30px 20px;
+    background: black;
+}
+
+#stickynav {
+    display: block;
+    height: 35px;
+    width: 100%;
+    z-index: 9999;
+}
+
+#stickynav #nav {
+    position: fixed;
+    z-index: 9999;
+}
+
+#stickynav #nav li {
+    display: inline;
+    list-style-type: none;
+}
+
+#stickynav #nav li a {
+    display: block;
+    float: left;
+    margin-right: 8px;
+    font-size: 1.5em;
+    font-weight: 200;
+    padding: 11px 8px;
+    background: #ff9900;
+    border-radius: 4px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#stickynav #nav li a:hover {
+    text-decoration: none;
+    background: #ff9966;
+}
+
+#section1 {
+    margin: 10px auto;
+    background: gray;
+    height: 800px;
+}
+
+#section2 {
+    margin: 10px auto;
+    background: #ffcc44;
+    height: 800px;
+}
+
+h3 {
+    text-align: center;
+}

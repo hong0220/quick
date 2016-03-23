@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>禁止网页放入框架</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        //判断当前网页是否为最顶层框架的网页
+        if (self != top) {
+            //如果不是顶层的框架或独立窗口打开的本网页，则进行跳转
+            top.location.href = self.location.href;
+        }
+    </script>
+</head>
+<body style="text-align:center">
+</body>
+</html>

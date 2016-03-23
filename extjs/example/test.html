@@ -1,0 +1,52 @@
+<html>
+	<head>
+	    <title>玉琴蝶园之 Ext JS 3.1 例子</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	    <link rel="stylesheet" type="text/css" href="style/main.css"/>
+	</head>
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+		    <div class="loading-indicator"><img src="../style/images/extanim32.gif" width="32" height="32" style="margin-right:8px;float:left;vertical-align:top;"/>Ext 3.1 - 组件例子<br /><span id="loading-msg">正在载入...</span></div>
+		</div>
+		
+		<link rel="stylesheet" type="text/css" href="../resources/css/ext-all.css" />
+	
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+	    <script type="text/javascript" src="../ext/ext-base.js"></script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+	    <script type="text/javascript" src="../ext/ext-all.js"></script>
+		<script>
+			Ext.BLANK_IMAGE_URL="../resources/images/default/s.gif";
+		</script>
+	    <script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+		<script type="text/javascript" src="js/Common.js"></script>
+		<script type="text/javascript" src="common/CommonWidget.js"></script>
+		<script type="text/javascript" src="Ext.form.MultiSelect.js"></script>
+		<br>
+		<br>
+		<br>
+		<div id="_divForDD" style="width:300px;top:100px;left:100px;background: green;font-size:20;">
+		    我可以被随意拖动，你也可以放张图片在这里。
+		</div>
+		<br>
+        <div id="_divForDD_panel"></div>
+		<script type="text/javascript">
+			var hideMask = function () {
+		        Ext.get('loading').remove();
+		        Ext.fly('loading-mask').fadeOut({
+		            remove:true
+		        });
+		    }.defer(250);
+		    
+
+		</script>
+		<div id="multiSelPanel"></div>
+
+		<script type="text/javascript" src="MultiSelect.js"></script>
+
+
+
+	</body>
+</html>

@@ -1,0 +1,39 @@
+body, div, ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+#nav {
+    width: 960px;
+    height: 35px;
+    background: #CCC; /*为了便于查看区域范围大小，故而加个背景色*/
+    margin: 0 auto; /*水平居中*/
+    margin-top: 30px; /*距离顶部30px*/
+}
+
+#nav ul {
+    width: 960px;
+    height: 35px;
+    list-style: none; /*清楚列表前面的大黑圆点*/
+}
+
+#nav ul li {
+    float: left;
+    line-height: 35px;
+    text-align: center;
+}
+
+#nav ul li a {
+    display: block;
+    height: 35px;
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    float: left;
+    padding: 0 10px;
+}
+
+#nav ul li a:hover {
+    color: #fff;
+    background: #000;
+}

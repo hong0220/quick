@@ -1,0 +1,136 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		.complete .x-tree-node-anchor span {
+			text-decoration: line-through;
+	        color: #777;
+	    }
+	</style>
+<body>
+	<div  style="padding: 10px 10px 10px 20px;">这是一个带多选框的树的例子，用的是ExtJs官方的例子。目前发现以下问题：
+		<ul>
+			<li>1、没有半选状态；</li>
+			<li>2、全选子节点,父节点无变化;</li>
+			<li>3、默认选中节点在没有操作过节点后获取不到;</li>
+			<li>4、父节点选中后，子节点没有全部选中。</li>
+		</ul>
+	</div>
+	<br/>
+	<div id="checkboxTree" style="padding: 10px 10px 10px 20px;"></div>
+	<br/>
+	<div id="checkboxTreeCodePanel" style="padding: 10px 10px 30px 20px;"></div>
+	<br/>
+	<div id="checkboxTreeCode" style="padding: 10px 10px 10px 5px;">
+		<pre>
+var CheckboxTree = function() {
+    CheckboxTree.superclass.constructor.call(this, {
+		renderTo  : 'checkboxTree',
+        title     : '所有部门 - ExtJs自带的例子',
+        height    : 300,
+        width     : 400,
+        frame     : false,
+        useArrows : true, //是否使用箭头样式
+        autoScroll: true,
+        animate   : true,
+        enableDD  : true,
+        containerScroll: true,
+        rootVisible    : false,
+        root: {
+            nodeType : 'async',
+			text     : '所有部门',
+			expanded : true,
+			draggable: false
+        },
+        dataUrl : "js/widgets/tree/CheckboxTree.php",
+        /** 事件监听 */
+        listeners: {
+            'checkchange': function(node, checked){
+                if(checked) node.getUI().addClass('complete');
+                else node.getUI().removeClass('complete');
+            }
+        },
+		/** 按钮组 */
+        buttons: [{
+            text: '得到选中节点值',
+			scope  : this,
+            handler: function(){
+                var msg = '', selNodes = this.getChecked();
+                Ext.each(selNodes, function(node){
+                    if(msg.length > 0){
+                        msg += '<br>';
+                    }
+                    msg += node.text;
+                });
+                Ext.Msg.show({
+                    title: '选中内容', 
+                    msg: msg.length > 0 ? msg : '无选中',
+                    icon: Ext.Msg.INFO,
+                    minWidth: 200,
+                    buttons: Ext.Msg.OK
+                });
+            }
+        }]
+	});
+};
+Ext.extend(CheckboxTree, Ext.tree.TreePanel);
+
+new CheckboxTree();
+		</pre>
+	</div>
+	<script>
+		var CheckboxTree = function() {
+		    CheckboxTree.superclass.constructor.call(this, {
+				renderTo  : 'checkboxTree',
+		        title     : '所有部门 - ExtJs自带的例子',
+		        height    : 300,
+		        width     : 400,
+		        frame     : false,
+		        useArrows : true, //是否使用箭头样式
+		        autoScroll: true,
+		        animate   : true,
+		        enableDD  : true,
+		        containerScroll: true,
+		        rootVisible    : false,
+		        root: {
+		            nodeType : 'async',
+					text     : '所有部门',
+					expanded : true,
+					draggable: false
+		        },
+		        dataUrl : "js/widgets/tree/CheckboxTree.php",
+		        /** 事件监听 */
+		        listeners: {
+		            'checkchange': function(node, checked){
+		                if(checked) node.getUI().addClass('complete');
+		                else node.getUI().removeClass('complete');
+		            }
+		        },
+				/** 按钮组 */
+		        buttons: [{
+		            text: '得到选中节点值',
+					scope  : this,
+		            handler: function(){
+		                var msg = '', selNodes = this.getChecked();
+		                Ext.each(selNodes, function(node){
+		                    if(msg.length > 0){
+		                        msg += '<br>';
+		                    }
+		                    msg += node.text;
+		                });
+		                Ext.Msg.show({
+		                    title: '选中内容', 
+		                    msg: msg.length > 0 ? msg : '无选中',
+		                    icon: Ext.Msg.INFO,
+		                    minWidth: 200,
+		                    buttons: Ext.Msg.OK
+		                });
+		            }
+		        }]
+			});
+		};
+		Ext.extend(CheckboxTree, Ext.tree.TreePanel);
+		
+		new CheckboxTree();
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<meta charset="UTF-8">
+<title>JS倒计时网页自动跳转代码</title>
+
+<body>
+<span id="time" style="background: #00BFFF">1000</span>秒钟后自动跳转，如果不跳转，请点击下面的链接<a href="http://www.baidu.com">我的百度</a>
+<input type="button" value="停止跳转" onclick="stop1();">
+</body>
+
+<script language="JavaScript" type="text/javascript">
+    function delayURL(url) {
+        var delay = document.getElementById("time").innerHTML;
+        if (delay > 0) {
+            delay--;
+            document.getElementById("time").innerHTML = delay;
+        } else {
+            window.top.location.href = url;
+        }
+        t = setTimeout("delayURL('" + url + "')", 1000);
+    }
+
+    function stop1() {
+        t && clearTimeout(t);
+    }
+</script>
+<script type="text/javascript">
+    delayURL("http://www.baidu.com");
+</script>
+</html>

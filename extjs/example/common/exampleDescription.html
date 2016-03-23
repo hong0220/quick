@@ -1,0 +1,75 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+.complete .x-tree-node-anchor span {
+	text-decoration: line-through;
+	color: #777;
+}
+</style>
+	<body>
+		<div class="content-font">
+			鉴于很多初学者在询问怎么使用例子，现在把使用方式做下说明：
+			<ul>
+				<li>
+					1、在你的页面引入Ext的资源文件：ext-all.js、ext-base.js、ext-all.css以及相关的图片文件（也即resources目录全部拷贝）。<br>
+					注意：如果你改变了ext-all.css的位置，则注意要修改里面图片链接的相对位置。还有就是设置本地的空白图片变量：Ext.BLANK_IMAGE_URL="resources/images/default/s.gif";
+				</li>
+				<li>
+					2、在你的页面上写js代码，对于ExtJs，你要把自己的代码包含在Ext.onReady(function(){/**这里放你的ExtJs代码*/});
+				</li>
+				<li>
+					3、加入ExtJs代码（可以用外部引入js文件的方式），如果用本站的例子单独显示在div中，则需要：a、增加div并设置其id；b、设置控件的renderTo的值为div的id；c、new 一个控件。
+				</li>
+			</ul>
+			<pre>
+    一个简单的例子如下：<br>
+&lt;html&gt;
+	&lt;head&gt;
+	    &lt;title&gt;玉琴蝶园之 Ext JS 使用例子&lt;/title&gt;
+		&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+		&lt;link rel="stylesheet" type="text/css" href="resources/css/ext-all.css" /&gt;
+	
+	    &lt;script type="text/javascript" src="ext/ext-base.js"&gt;&lt;/script&gt;
+	    &lt;script type="text/javascript" src="ext/ext-all.js"&gt;&lt;/script&gt;
+		&lt;script&gt;
+			Ext.BLANK_IMAGE_URL="resources/images/default/s.gif";
+			Ext.onReady(function(){
+				var LoginForm = function() {
+					LoginForm.superclass.constructor.call(this, {
+						title: '最简单的Form',
+						labelAlign: 'right',
+						labelWidth: 55,
+						width: '50%',
+						renderTo: "form",
+						buttonAlign : "center",
+						items: [{
+							xtype: 'textfield',
+							fieldLabel: '姓名',
+				            width: '97%'
+						},{
+							xtype: 'textfield',
+							inputType: 's-password',
+							fieldLabel: '密码',
+				            name: 's-password',
+				            width: '97%'
+						}],
+						buttons:[{
+							id:'submit',  
+							text:'确定'
+						},{    
+					        text:'重置'
+						}]
+					})
+				}
+				Ext.extend(LoginForm, Ext.form.FormPanel);
+				new LoginForm();
+			});
+		&lt;/script&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="form"&gt;&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+			</pre>
+	</body>
+</html>

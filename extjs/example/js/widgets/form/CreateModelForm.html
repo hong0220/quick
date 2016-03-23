@@ -1,0 +1,402 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<body>
+	<div style="padding: 10px 10px 10px 20px;">较复杂的应用Form例子。
+	</div>
+	<br/>
+	<div id="createModelForm" style="padding: 10px 10px 10px 20px;"></div>
+	<br/>
+	<script>
+	
+		var FieldPropertyGrid = function(config) {
+			var data = [
+			     ["ID","String"],
+			     ["Name","String"],
+			     ["email","String"],
+			     ["age","int"]
+			];
+			
+			var sm = new Ext.grid.CheckboxSelectionModel();
+			var ds = new Ext.data.Store({
+				// 用于访问数据对象。
+				proxy : new Ext.data.MemoryProxy(data),
+		        reader: new Ext.data.ArrayReader({}, this.getFields()),
+				autoLoad : true,
+				sortInfo : {field: "colName", direction: "ASC"}
+		    });
+			
+		    FieldPropertyGrid.superclass.constructor.call(this, {
+				border    : true,
+				autoScroll: true,
+				frame     : true,
+				height    : 180,
+				loadMask  : {
+					msg   : "数据加载中…"
+				},
+			    ds        : ds,
+			    viewConfig: {
+		            forceFit     : true,
+		            enableRowBody: true,
+		            showPreview	 : true
+		        },
+		        sm       : sm,
+			    cm       : this.getCm(sm),
+				tbar : [{
+					text : '增加字段',
+					scope: this,
+					handler : function(){
+						this.getColumns(this,config);
+					}
+				}, '-' ,{
+					text : '删除选中',
+					scope : this,
+					handler : function() {
+						var scope = this;
+						var rowselects = sm.getSelections();
+						var dataCount = ds.getCount();
+						var selectCount = rowselects.length;
+						if(selectCount<=0) {
+							Ext.Msg.alert('提示', '请选择要删除的字段！');
+							return;
+						}
+						var id = "";
+						for (i = 0; i < selectCount; i++) {
+							ds.remove(rowselects[i]);
+								/* 后台删除处理
+							id = rowselects[i].get("id");
+							if(id == 'undfined' || id == '') {
+								ds.remove(rowselects[i]);
+							} else {
+								submitByRequest({
+									url : "field/delFieldById.do",
+									params : {fieldId : id},
+									callback : function() {
+										jsonDs.reload();
+										if(dataCount == selectCount) config.sqlEl.setValue("");
+										else scope.setSqlQuery(jsonDs,config.modelCode,config.sqlEl);
+									}
+								});
+							}
+								*/
+						}
+						if(dataCount == selectCount) config.sqlEl.setValue("");
+						else scope.setSqlQuery(ds,config.sqlEl);
+					}
+				}],
+				rightClickMenu : new Ext.menu.Menu({
+					scope : this,
+				    items : [{
+						scope : this,
+			            iconCls : "view",
+			            text: "查看",
+			            handler : this.viewDetailInfo
+			        }]
+				})
+			});
+			
+			this.setSqlQuery(ds, config.sqlEl);
+		};
+		
+		Ext.extend(FieldPropertyGrid, Ext.grid.EditorGridPanel,{
+			/**
+			 * 得到Fields
+			 * @return {}
+			 */
+			getFields : function () {
+				return Ext.data.Record.create([
+					{name: "colName",mapping: 0},
+					{name: "type",mapping: 1}
+				]);
+			},
+			getCm : function(sm){
+				return new Ext.grid.ColumnModel([
+					new Ext.grid.RowNumberer(),
+					sm,
+				    {header:"字段名称",dataIndex:"colName",sortable : true,resizable:false},
+					{header:"类别",dataIndex:"type",sortable : true}
+				]);
+			},
+			/**
+			 * 得到要设置的数据库字段
+			 */
+			getColumns : function(fpGrid,config) {
+				var colChooseWin = Ext.getCmp("_colChooseWin");
+				if(colChooseWin) colChooseWin.show();
+				else {
+					var data = [
+					     ["ID","String"],
+					     ["Name","String"],
+					     ["email","String"],
+					     ["age","int"]
+					];
+					
+					var sm = new Ext.grid.CheckboxSelectionModel();
+					var ds = new Ext.data.Store({
+						// 用于访问数据对象。
+						proxy : new Ext.data.MemoryProxy(data),
+				        reader: new Ext.data.ArrayReader({}, [
+							{name: "code",mapping: 0},
+							{name: "type",mapping: 1}
+						]),
+						autoLoad : true,
+						sortInfo : {field: "code", direction: "ASC"}
+				    });
+				    
+					colChooseWin = new Ext.Window({
+						id    : '_colChooseWin',
+						title : '选择要设置的字段',
+						width : 300,
+						height: 400,
+						buttonAlign : 'center',
+						layout: 'fit',
+						items : [new Ext.grid.GridPanel({
+							border    : false,
+							autoScroll: true,
+							frame     : false,
+							height    : 250,
+							loadMask  : {msg   : "数据加载中…"},
+						    ds        : ds,
+					        sm       : sm,
+						    cm       : new Ext.grid.ColumnModel([
+								new Ext.grid.RowNumberer(),
+								sm,
+							    {header:"数据库字段名",dataIndex:"code",sortable : true},
+							    {header:"字段类型",dataIndex:"type",sortable : true}
+							])
+						})],
+						buttons : [{
+							text : '确定',
+							scope: this,
+							handler : function () {
+								var records = sm.getSelections();
+								var Plant = fpGrid.getFields();
+								var sql="select ";
+								
+								var code = "";
+								var fpStore = fpGrid.getStore();
+								var count = fpStore.getCount();
+								var fpColNames = "";
+								if(count>0) {
+									for(var i=0; i<count;i++) {
+										fpColNames += fpStore.getAt(i).get("colName")+",";
+									}
+								}
+								for(var i in records){
+									if(i>-1) {
+										code = records[i].get("code");
+										// 存在验证
+										if((","+fpColNames).indexOf(","+code+",") > -1) continue;
+										p = new Plant({
+											id         : "",
+											columnName : code,
+											filterHtml : false,
+											fieldName  : code,
+											isExclude  : false,
+											indexType  : records[i].get("type"),
+											defaultSearch : false
+										});
+								        fpStore.insert(0, p);
+								        fpColNames = code+","+fpColNames;
+									}
+								}
+								sql += ((fpColNames+'&').replace(",&","")) +" from tableName where 1=1 "
+								config.sqlEl.setValue(sql);
+								colChooseWin.hide();
+							}
+						},{
+							text : '关闭',
+							handler : function (){ 
+								colChooseWin.hide();
+							}
+						}]
+					}).show();
+				}
+			},
+			/**
+			 * 根据column的选择设置SQL语句
+			 * @param {} sm
+			 * @param {} rowIndex
+			 * @param {} record
+			 */
+			setSqlQuery : function(store,sqlEl) {
+				var sql="select ";
+				for(var i=0; i<store.getCount(); i++){
+					sql+=store.getAt(i).get("colName")+',';
+				}
+				sql= ((sql+'*').replace(",*","")) +" from tableName where 1=1 "
+				sqlEl.setValue(sql);
+			}
+		});
+		
+		var sqlContent = new Ext.form.TextArea({
+			name       : 'model.query',
+			fieldLabel : 'SQL语句',
+			readOnly   : true,
+			anchor     : '95%'
+		});
+		var fieldPropertyGrid = new FieldPropertyGrid({sqlEl:sqlContent});
+		var sqlEditRg = new  Ext.form.RadioGroup ({
+			fieldLabel: '编辑SQL',
+			width : 150,
+			items : [{
+	            inputValue: 'yes',
+	            name      : 'editSql',
+	            boxLabel  : "可编辑"
+	        }, {
+	            inputValue: 'no',
+	            name      : 'editSql',
+	            boxLabel  : "不可编辑",
+	            checked   : true
+	        }],
+	        listeners : {
+	        	'change' : function(rg, checked){
+	        		sqlContent.getEl().dom.readOnly = checked.getGroupValue() == 'yes' ? false : true;
+			}}
+		});
+		var modelFrom = new Ext.form.FormPanel({
+			renderTo : 'createModelForm',
+			labelAlign : 'right',
+			buttonAlign : 'center',
+			bodyStyle : 'padding:5px',
+			width : 800,
+			frame : true,
+			labelWidth : 80,
+			items : [{
+				xtype : 'fieldset',
+				title : '基本信息',
+				layout : 'column',
+				height : '100%',
+				columnWidth : .7,
+				labelWidth  : 85,
+				items : [{
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						name   : 'model.project.name',
+						xtype: 'textfield',
+						fieldLabel : '所属项目',
+						value      : "IT1",
+						readOnly   : true,
+						anchor: '95%'
+					}]
+				}, {
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						name   : 'model.project.id',
+						xtype: 'textfield',
+						fieldLabel : '项目ID',
+						value      : "It0.1",
+						readOnly   : true,
+						anchor: '95%'
+					}]
+				}, {
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						name   : 'model.project.code',
+						xtype: 'textfield',
+						fieldLabel : '项目编号',
+						value      : "Project_00001",
+						readOnly   : true,
+						anchor     : '95%'
+					}]
+				}, {
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						xtype: 'textfield',
+						name   : 'model.name',
+						fieldLabel : '栏目名称',
+						anchor: '95%'
+					}]
+				}, {
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						xtype: 'textfield',
+						name   : 'model.code',
+						fieldLabel : '栏目编码',
+						anchor: '95%'
+					}]
+				}, {
+					columnWidth : .333,
+					layout : 'form',
+					border : false,
+					items : [{
+						xtype: 'textfield',
+						name   : 'model.businessId',
+						fieldLabel : 'BusinessID',
+						anchor: '95%'
+					}]
+				}, {
+					columnWidth : 1,
+					layout : 'form',
+					border : false,
+					items : [sqlEditRg]
+				}, {
+					columnWidth : 1,
+					layout : 'form',
+					border : false,
+					items : [sqlContent]
+				}]
+			}, fieldPropertyGrid],
+			buttons : [{
+				text : '提交',
+				handler : function () {
+					// 先验证提交form内容，获取modelId后提交字段内容
+					modelFrom.getForm().el.mask("正在提交Form数据，请稍候...", "x-mask-loading");
+					modelFrom.form.doAction('submit', {
+						url : 'model/saveModel.do',
+						method : 'post',
+						success : function(f, action) {
+							if(action.result.id) {
+								modelFrom.getForm().el.unmask(true);
+								modelFrom.getForm().el.mask("正在提交Grid数据，请稍候...", "x-mask-loading");
+								
+								//获取设置的字段值，循环提交
+								var store = fieldPropertyGrid.getStore();
+								var count = store.getCount();
+								if (count < 1) {
+									Ext.Msg.alert("提示", "请选择模块！");
+									return;
+								}
+								var params = {};
+							
+								for (var i=0; i<count; i++) {
+									params.id = store.getAt(i).get("id");
+									params.columnName = store.getAt(i).get("columnName");
+									params.fieldName = store.getAt(i).get("fieldName");
+									params.fetchOrder = i;
+									params.filterHtml = store.getAt(i).get("filterHtml");
+									params.isExclude = store.getAt(i).get("isExclude");
+									params.defaultSearch = store.getAt(i).get("defaultSearch");
+									submitByRequest({url:'field/saveField.do',params:params,el:modelFrom});
+								}
+							} else {
+								Ext.Msg.alert('失败', "提交数据失败！");
+								modelFrom.getForm().el.unmask(true);
+							}
+						},
+						failure : function() {
+							Ext.Msg.alert('错误', '服务器出现错误请稍后再试！');
+							modelFrom.getForm().el.unmask(true);
+						}
+					});
+				}
+			},{
+				text : '重置',
+				scopt: this,
+				handler : function (){ 
+					modelFrom.getForm().reset();
+				}
+			}]
+		});
+	</script>
+</body>
+</html>

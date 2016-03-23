@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具提示</title>
+    <link href="../../resource/bootstrap2/css/bootstrap.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="container">
+    <h1 class="page-header">工具提示</h1>
+
+    <p><a title="这是一个提示信息" rel="tooltip" href="#">Tooltip</a></p>
+
+    <p><a title="这是标题" data-content="这是提示的主要内容" rel="popover" href="#">Popover</a></p>
+</div>
+<script src="../../resource/js/jquery.min.js"></script>
+<script src="../../resource/js/bootstrap.js"></script>
+<script>
+    $("a[rel=tooltip]").tooltip()
+    $("a[rel=popover]").popover()
+</script>
+</body>
+</html>

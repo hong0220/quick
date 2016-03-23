@@ -1,0 +1,49 @@
+<html>
+	<title>玉琴蝶园 - Ext JS 3.1 例子 之下拉框扩展</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="../../../../style/main.css" />
+	<body>
+		<!-- 系统初始化信息显示DIV -->
+		<div id="loading-mask" style=""></div>
+		<div id="loading">
+			<div class="loading-indicator">
+				<img src="../../../../style/images/extanim32.gif" width="32" height="32" style="margin-right: 8px; float: left; vertical-align: top;" />
+				Ext 3.1 - 组件例子
+				<br />
+				<span id="loading-msg">正在载入...</span>
+			</div>
+		</div>
+
+		<link rel="stylesheet" type="text/css" href="../../../../../resources/css/ext-all.css" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载核心 API...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-base.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '加载 UI 组件...';</script>
+		<script type="text/javascript" src="../../../../../ext/ext-all.js"></script>
+		<script type="text/javascript" src="Ext.ux.IconCombo.js"></script>
+		<script type="text/javascript" src="Ext.form.MultiComboBox.js"></script>
+		<script type="text/javascript" src="Ext.ux.form.DynamicTreeCombox.js"></script>
+		<script type="text/javascript">document.getElementById('loading-msg').innerHTML = '系统初始化...';</script>
+		<script type="text/javascript" src="IconCombobox.js"></script>
+		<script type="text/javascript" src="MultiComboBox.js"></script>
+		<script type="text/javascript" src="DynamicTreeCombox.js"></script>
+
+		<div style="padding: 10px 10px 10px 20px;">
+			各种对下拉框的扩展的例子。包括：
+			<ul>
+				<li>1、带图标的下拉框(IE7下面有显示图标)，源文件：<a href="Ext.ux.IconCombo.js">Ext.ux.IconCombo.js</a> &nbsp;&nbsp;&nbsp;&nbsp;示例文件：<a href="IconCombobox.js">IconCombobox.js</a><br>CSS样式：<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="style.css">style.css</a>
+				</li>
+				<li>2、多选下拉框，源文件：<a href="Ext.form.MultiComboBox.js">Ext.form.MultiComboBox.js</a>&nbsp;&nbsp;&nbsp;&nbsp;示例文件：<a href="MultiComboBox.js">MultiComboBox.js</a><br>CSS样式：<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.checked{background-image:url(../../../../resources/images/default/menu/checked.gif)}<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.unchecked{background-image:url(../../../../resources/images/default/menu/unchecked.gif)}
+				</li>
+			</ul>
+		</div>
+		<br />
+		<div id="comboboxExtention" style="padding: 10px 10px 10px 20px;"></div>
+		<br />
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>

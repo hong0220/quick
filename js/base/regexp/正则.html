@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        //string.match(正则)：正则查找字符串，返回符合正则的字符或字符串
+        function t1() {
+            var con = document.getElementsByName('content')[0].value;//需要查找的内容
+            var reg = /\Bhi\B/g;//匹配中间有hi的单词。g为模式增强符，表示全局匹配
+            alert(con.match(reg));
+        }
+        //string.replace(正则，用什么替换)：返回被替换后的string
+        function t2() {
+            var con = document.getElementsByName('content')[0].value;//需要查找的内容
+            var reg = /<script.*<\/script>/;//把javascript代码替换为空
+            alert(con.replace(reg, ''));
+        }
+    </script>
+</head>
+<body>
+<textarea rows="5" cols="30" name="content"></textarea><br/>
+<button onclick="t1();">正则查找字符串match()</button>
+<br/>
+<button onclick="t2();">正则查找字符串replace()</button>
+<br/>
+</body>
+</html>

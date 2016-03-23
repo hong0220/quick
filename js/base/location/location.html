@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<!--js不访问页面元素，放在<head>标签中，访问页面元素，放在</body>之前。-->
+
+<body>
+<script>
+    var title = document.getElementById("hello-js");
+    console.log(title);
+    title.addEventListener('click', function () {
+        alert('你好,极客标签')
+    })
+</script>
+
+<button type="button" id="hello-js">因为js文件在元素之前,所以即使绑定事件点击也弹不出文字</button>
+<h4>在以上代码中，页面的js有可能在加载 id="hello-js" 这个元素之前就运行了,所以得到的结果可能无法预测。</h4>
+<button type="button" id="hello-js2">因为js文件在元素之后,所以绑定事件点击就能弹出文字</button>
+
+<script>
+    var title2 = document.getElementById("hello-js2");
+    title2.addEventListener('click', function () {
+        alert('你好,极客标签')
+    })
+</script>
+</body>
+</html>

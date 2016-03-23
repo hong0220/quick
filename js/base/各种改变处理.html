@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>style样式</title>
+    <style type="text/css">
+        * {
+            font-size: 12px;
+        }
+
+        #txt {
+            height: 400px;
+            width: 600px;
+            border: #333 solid 1px;
+            padding: 5px;
+
+        }
+
+        p {
+            line-height: 18px;
+            text-indent: 2em;
+        }
+    </style>
+</head>
+<body>
+<h2 id="con">JavaScript课程</H2>
+
+<div id="txt">
+    <h5>JavaScript为网页添加动态效果并实现与用户交互的功能。</h5>
+
+    <p>1. JavaScript入门篇，让不懂JS的你，快速了解JS。</p>
+
+    <p>2. JavaScript进阶篇，让你掌握JS的基础语法、函数、数组、事件、内置对象、BOM浏览器、DOM操作。</p>
+
+    <p>3. 学完以上两门基础课后，在深入学习JavaScript的变量作用域、事件、对象、运动、cookie、正则表达式、ajax等课程。</p>
+
+</div>
+<form>
+    <input type="button" value="改变颜色" onClick="changeColor()">
+    <input type="button" value="改变宽高" onClick="changeWH()">
+    <input type="button" value="隐藏内容" onClick="displayNone()">
+    <input type="button" value="显示内容" onClick="displayBlock()">
+    <input type="button" value="恢复" onClick="myClear()">
+
+</form>
+<script type="text/javascript">
+    function changeColor() {
+        var mychar = document.getElementById("txt");
+        mychar.style.color = "red";
+        mychar.style.backgroundColor = "#ccc";
+    }
+
+    function changeWH() {
+        var mychar = document.getElementById("txt");
+        mychar.style.width = "400px";
+        mychar.style.height = "200px";
+    }
+
+    function displayNone() {
+        var mychar = document.getElementById("txt");
+        mychar.style.display = "none";
+    }
+    function displayBlock() {
+        var mychar = document.getElementById("txt");
+        mychar.style.display = "block";
+    }
+
+    function myClear() {
+        if (confirm("确定要取消设置吗?")) {
+            var mychar = document.getElementById("txt");
+            mychar.style.color = "#000";
+            mychar.style.backgroundColor = "#fff";
+            mychar.style.width = "600px";
+            mychar.style.height = "400px";
+            mychar.style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

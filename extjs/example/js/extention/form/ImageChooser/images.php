@@ -1,0 +1,3 @@
+<?php
+	echo "{images:[{name:'alcatel.gif',url:'images/alcatel.gif'},{name:'cisco.gif',url:'images/cisco.gif'},{name:'h3c.gif',url:'images/h3c.gif'},{name:'huawei.gif',url:'images/huawei.gif'},{name:'nortel.gif',url:'images/nortel.gif'},{name:'Servercisco.gif',url:'images/Servercisco.gif'},{name:'Serverh3c.gif',url:'images/Serverh3c.gif'},{name:'Serverhp.gif',url:'images/Serverhp.gif'},{name:'Serveribm.gif',url:'images/Serveribm.gif'}]}"
+?>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--添加动态时间参数，url发生了变化，每次读取时都是按照一个新的url来读取新的信息-->
+    <title>避免浏览器使用缓存加载页面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        //加载完成以后的回调函数
+        function myOnLoad() {
+            //获取到所有的超级连接DOM
+            var links = document.getElementsByTagName('a');
+            for (var i = 0; i < links.length; i++) {	//遍历
+                var link = links[i];			//得到当前的链接的DOM
+                var href = link.href;			//链接的地址
+                if (href.indexOf('?') > -1) {		//地址中是否已经包含了参数
+                    //修改链接的地址，加上一个参数：当前时间的毫秒数
+                    href += '&time=' + new Date().getTime();
+                } else {
+                    href += '?time=' + new Date().getTime();
+                }
+                link.href = href;				//赋新的地址
+            }
+        }
+        //使用window的onload元素进行回调处理
+        window.onload = myOnLoad;
+    </script>
+</head>
+<body style="text-align:center">
+<p>
+    <!-- 定义网页的超级链接 -->
+    <a href="a.html">链接一</a>
+    <a href="b.html">链接二</a>
+</p>
+</body>
+</html>

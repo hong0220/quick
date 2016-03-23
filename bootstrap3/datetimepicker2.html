@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Metronic | UI Components - Pickers</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <link href="../resource/bootstrap3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../resource/bootstrap3/css/bootstrap-datetimepicker.min.css">
+</head>
+
+<body>
+<div class="col-md-8">
+    <input type="text" size="16" readonly="" class="form-control form_datetime" id="test">
+</div>
+
+<script src="../resource/js/jquery.min.js" type="text/javascript"></script>
+<script src="../resource/bootstrap3/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../resource/bootstrap3/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#test").datetimepicker({
+            language: 'zh-CN',
+            autoclose: true,
+            minView: "month",//选择日期后，不会再跳转去选择时分秒
+            format: 'yyyy-mm-dd'
+        });
+    });
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>克隆元素</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript">
+			//克隆元素
+			function cloneImg(){
+				//得到元素DOM
+				var myImg = document.getElementById("myImg");
+				//克隆出新的元素
+				var newImg = myImg.cloneNode(true);
+				//使用appendChild()函数挂接
+				document.getElementById("myContent").appendChild(newImg);
+			}
+		</script>
+	</head>
+	<body style="text-align:center">
+		<p id="myContent">
+			<input type="button" value="克隆" onclick="cloneImg();"/>
+			<br/>
+			<!-- 定义图片元素 -->
+			<img id="myImg" src="./1.jpg" width="200" height="100"/>
+		</p>		
+	</body>
+</html>

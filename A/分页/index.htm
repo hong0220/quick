@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>直角边框分页页码--行内无素间隔bug修复</title>
+    <link href="fenye.css" rel="stylesheet" type="text/css"/>
+</head>
+<!--行内元素中间有空隙
+产生原因：换行符、tab(制表符)、空格产生空隙
+解决方法：1、元素写成一行 2、设置font-size:0
+-->
+<body>
+<div class="page-normal">
+    <span class="page-prev"><i></i>&lt;</span>
+    <span class="page-current">1</span>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">7</a>
+    <span class="ellipsis">...</span>
+    <a href="#">199</a>
+    <a href="#">200</a>
+    <a href="#" class="page-next"><i></i>&gt;</a>
+</div>
+</body>
+</html>

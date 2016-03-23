@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Metronic | UI Components - Pickers</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <meta content="" name="description">
+    <meta content="" name="author">
+
+    <link rel="stylesheet" type="text/css" href="../resource/metronic/css/datepicker3.css">
+
+</head>
+<body>
+<div class="col-md-3">
+    <input class="form-control form-control-inline input-medium date-picker" size="16" type="text" value="">
+</div>
+
+
+<script src="../resource/js/jquery.min.js" type="text/javascript"></script>
+<script src="../resource/bootstrap3/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../resource/bootstrap3/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+<!--一定要放在最后面-->
+<script type="text/javascript">
+    $(function () {
+        if (jQuery().datepicker) {
+            $('.date-picker').datepicker({
+                orientation: "left",
+                autoclose: true
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

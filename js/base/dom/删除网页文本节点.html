@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>删除网页文本节点</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<script type="text/javascript">
+			//删除元素
+			function deleteElement(){
+				//获取准备删除的DOM
+				var del = document.getElementById("del");
+				//调用删除函数彻底删除
+				del.parentNode.removeChild(del);
+			}
+		</script>
+	</head>
+	<body style="text-align:center">
+		<p>
+			<input type="button" value="删除元素" onclick="deleteElement();"/>
+		</p>
+		<!-- 定义被删除的元素 -->
+		<span id="del">即将本删除的DOM</span>
+	</body>
+</html>

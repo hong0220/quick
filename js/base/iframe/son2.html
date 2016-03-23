@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form name="form2"><input name="btn1" type="button" onclick="diaoyong()" value="调用父页面中的函数"/></form>
+
+<script src="../../resource/js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+    function diaoyong() {
+        $(window.parent.fun());  //调用父页面函数
+    }
+</script>
+</body>
+</html>
