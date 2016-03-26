@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var x;
+        if (x === undefined) {
+            console.log(x);
+        }
+
+        // 加法和字符串的连接
+        var foo = 1;
+        var bar = "2";
+        console.log(foo + bar); // 12
+
+        // 强制把字符串转换为数字.
+        var foo = 1;
+        var bar = "2";
+        console.log(foo + Number(bar)); // 3
+
+        //强制转换,把字符串转换成数字(一元加运算符).
+        console.log(foo + +bar); // 3
+
+        var foo = 1;
+        var bar = 0;
+        var baz = 2;
+        foo || bar;//返回1,值为真
+        bar || foo;//返回1,值为真
+        foo && bar;//返回0,值为假
+        foo && baz;//返回2,值为真
+        baz && foo;//返回1,值为真
+        //运算符(||)返回第一个值为真的操作数, 如果两个操作数的值都为假,则返回最后一个操作数。
+        //运算符(&&)返回第一个值为假的运算符,如果两个操作数的值都为真,则返回最后一个操作数。
+    </script>
+</head>
+<body>
+</body>
+</html>
