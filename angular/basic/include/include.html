@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩单</title>
+    <style>
+        body {
+            font-family: 'microsoft yahei', Arial, sans-serif;
+        }
+
+        h1 {
+            font-weight: 500;
+            font-size: 24px;
+        }
+
+        table, th, td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #E4E4E4;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<h1>成绩单</h1>
+
+<div ng-app="" ng-controller="studentController">
+    <div ng-include="'main.html'"></div>
+</div>
+<script src="../../../resource/angular/angular.min.js"></script>
+<script>
+    function studentController($scope) {
+        $scope.student = {
+            firstName: "Terry",
+            lastName: "Lee",
+            fees: 500,
+            subjects: [
+                {name: '编程语言基础', marks: 90},
+                {name: 'C语言', marks: 85},
+                {name: 'HTML/CSS', marks: 61},
+                {name: 'Java', marks: 85},
+                {name: 'NodeJS', marks: 65}
+            ],
+            fullName: function () {
+                var studentObject;
+                studentObject = $scope.student;
+                return studentObject.firstName + " " + studentObject.lastName;
+            }
+        };
+    }
+</script>
+</body>
+</html>
