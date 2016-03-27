@@ -8,19 +8,18 @@
             color: orange;
         }
     </style>
-    <script src="js/angular.min.js"></script>
 </head>
 <body ng-app="myfirstapp">
 <div ng-controller="HelloController">
     <h1>你好，<i>{{sayHello.info}}</i></h1>
-
 </div>
+<script src="../../../resource/js/angular/angular.min.js"></script>
 <script>
-    angular.module("myfirstapp", [])
-            .controller("HelloController", function ($scope) {
-                $scope.sayHello = {};
-                $scope.sayHello.info = "我是AngularJS框架";
-            });
+    var myfirstapp = angular.module("myfirstapp", []);
+    myfirstapp.controller("HelloController", function ($scope) {
+        $scope.sayHello = {};
+        $scope.sayHello.info = "我是AngularJS框架";
+    });
 </script>
 </body>
 </html>
