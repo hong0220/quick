@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div ng-app="" ng-init="languages=[{name:'java',learningcurve:'high'},{name:'javascript',learningcurve:'medium'}]">
+    <p>编程语言</p>
+    <ul>
+        <li ng-repeat="language in languages">
+            {{'编程语言：'+ language.name +', 难度：' + language.learningcurve}}
+        </li>
+    </ul>
+</div>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+</body>
+</html>
