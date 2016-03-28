@@ -3,9 +3,9 @@
 <head lang="zh-CN">
     <meta charset="utf-8"/>
     <title>AngularJS Datepicker</title>
-    <link href="http://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet">
-    <script src="http://www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
-    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.js"></script>
+    <link href="../../../resource/bootstrap2/css/bootstrap.css" rel="stylesheet">
+    <script src="js/angular.min.js"></script>
+    <script src="js/ui-bootstrap-tpls.js"></script>
 </head>
 <body ng-app="myApp" style="background:#4A4A4A" class="row">
 <div style="color:#fff; font-size:30px; font-weight:bold; text-shadow:3px 3px 3px #ccc;-webkit-text-shadow:3px 3px 3px #ccc; text-align:center; margin-top:30px;">
@@ -16,6 +16,7 @@
              style="float:none; margin:20px auto; background:#fff; padding:20px;">
         <pre class="">选定的日期是：<em ng-model="aaa">{{dt | date:'yy-MM-dd'}}</em></pre>
         <h4>弹出：</h4>
+
         <div class="row">
             <div class="col-md-6">
                 <p class="input-group">
@@ -58,8 +59,8 @@
          formatYear : 'yy',
          startingDay : 1
          }*/
-        $scope.formats = ['yy-MM-dd']; //日期显示格式
-        $scope.format = $scope.formats[0];  // 将formats的第0项设为默认显示格式
+        $scope.formats = ['yy-MM-dd'];
+        $scope.format = $scope.formats[0];
     })
 </script>
 </body>
