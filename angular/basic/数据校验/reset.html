@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>重置表单数据</title>
+    <style>
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 18px;
+            color: #dd4814;
+            font-family: 'microsoft yahei', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div ng-app="" ng-controller="studentController">
+    <input name="firstname" type="text" ng-model="firstName" value="test" required><br/>
+    <input name="lastname" type="text" ng-model="lastName" required><br/>
+    <input name="email" type="email" ng-model="email" required><br/>
+    <button ng-click="reset()">点击这里重置表单数据</button>
+</div>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+<script>
+    function studentController($scope) {
+        $scope.reset = function () {
+            $scope.firstName = "terry";
+            $scope.lastName = "lee";
+            $scope.email = "terrylee@gbtags.com";
+        }
+        $scope.reset();
+    }
+</script>
+</body>
+</html>
