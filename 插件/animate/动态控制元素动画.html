@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @import url(../../resource/css/animate/animate.min.css);
+
+        img {
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<img src="http://www.gbtags.com/gb/laitu/150x150" alt="">
+
+<script src="../../resource/js/jquery/jquery.min.js"></script>
+<script>
+    $('img').click(function () {
+        var $this = $(this);
+        $this.addClass('animated bounce').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $this.removeClass();
+        });
+    });
+</script>
+</body>
+</html>
