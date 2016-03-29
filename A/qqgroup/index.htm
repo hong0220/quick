@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>QQ群关系可视化查询 每一个被GFW的网站都是一个伟大的网站</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="../../resource/js/jquery/jquery.min.js"></script>
+<script src="../../resource/js/d3/d3.min.js"></script>
+<script>
+    var qstr = "10001";
+    var ajaxsrc = 'http://localhost:12345/quick/A/qqgroup/qqgroup.json';
+    d3.json(ajaxsrc)
+            .on("beforesend", function (request) {
+                request.withCredentials = true;
+            })
+            .get(function (error, json) {
+                nodes = json.nodes;
+                json.links.forEach(function (l) {
+                    var sourceNode = json.nodes.filter(function (n) {
+                                return n.type == 'qun' && n.num == l.source;
+                            })[0],
+                            targetNode = json.nodes.filter(function (n) {
+                                return n.type == 'qq' && n.num == l.target;
+                            })[0];
+                    if (sourceNode != null && targetNode != null) {
+                        linkedByIndex[sourceNode.num + "," + targetNode.num] = 1;
+                        clinks.push({
+                            source: sourceNode,
+                            target: targetNode,
+                            auth: l.auth,
+                            nick: l.nick
+                        });
+                    }
+                });
+                restart();
+            });
+</script>
+<script src="js/qqgroup.obfs.js"></script>
+</body>
+</html>
