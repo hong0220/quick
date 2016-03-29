@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单校验</title>
+    <style>
+        body {
+            font-family: 'microsoft yahei', Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        p {
+            color: #888;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 5px;
+            font-size: 18px;
+            color: #dd4814;
+            font-family: 'microsoft yahei', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<!--
+$dirty - 此状态表明数据已修改
+$invalid- 此状态表明输入数据非法
+$error- 此状态表明具体的验证错误
+-->
+<h1>AngularJS错误验证</h1>
+
+<p>提示：请尝试删除输入框中的内容，或者输入错误的邮件格式</p>
+
+<div ng-app="" ng-controller="studentController">
+    <form name="studentForm">
+        <table>
+            <tr>
+                <td>姓:</td>
+                <td>
+                    <input name="lastname" type="text" ng-model="lastName" required/>
+                    <span style="color:red" ng-show="studentForm.lastname.$dirty && studentForm.lastname.$invalid">
+                        <span ng-show="studentForm.lastname.$error.required">必须填写姓</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>名:</td>
+                <td>
+                    <input name="firstname" type="text" ng-model="firstName" required/>
+                    <span style="color:red" ng-show="studentForm.firstname.$dirty && studentForm.firstname.$invalid">
+                        <span ng-show="studentForm.firstname.$error.required">必须填写名</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>邮件:</td>
+                <td>
+                    <input name="email" type="email" ng-model="email" length="100" required/>
+                    <span style="color:red" ng-show="studentForm.email.$dirty && studentForm.email.$invalid">
+                        <span ng-show="studentForm.email.$error.required">必须填写邮件</span>
+                        <span ng-show="studentForm.email.$error.email">邮件格式错误</span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button ng-click="reset()">重置表单</button>
+                </td>
+                <td>
+                    <button ng-disabled="studentForm.firstname.$dirty && studentForm.firstname.$invalid ||
+                        studentForm.lastname.$dirty && studentForm.lastname.$invalid ||
+                        studentForm.email.$dirty && studentForm.email.$invalid" ng-click="submit()">递交表单
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script src="../../../resource/js/angular/angular.min.js"></script>
+<script>
+    function studentController($scope) {
+        $scope.reset = function () {
+            $scope.firstName = "terry";
+            $scope.lastName = "lee";
+            $scope.email = "terrylee@gbtags.com";
+        }
+        $scope.reset();
+    }
+</script>
+</body>
+</html>

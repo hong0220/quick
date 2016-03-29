@@ -1,0 +1,50 @@
+{
+  "listaccountsresponse": {
+    "count": 1,
+    "account": [
+      {
+        "id": 5,
+        "name": "xian1",
+        "accounttype": 0,
+        "domainid": 2,
+        "domain": "Server",
+        "receivedbytes": 649444,
+        "sentbytes": 175467975,
+        "vmlimit": "20",
+        "vmtotal": 2,
+        "vmavailable": "18",
+        "iplimit": "20",
+        "iptotal": 1,
+        "ipavailable": "19",
+        "volumelimit": "20",
+        "volumetotal": 2,
+        "volumeavailable": "18",
+        "snapshotlimit": "20",
+        "snapshottotal": 0,
+        "snapshotavailable": "20",
+        "templatelimit": "20",
+        "templatetotal": 0,
+        "templateavailable": "20",
+        "vmstopped": 0,
+        "vmrunning": 2,
+        "state": "enabled",
+        "user": [
+          {
+            "id": 5,
+            "username": "xian1",
+            "firstname": "Eric",
+            "lastname": "Tang",
+            "email": "Wang-Ngai.Tang@pccw.com",
+            "created": "2012-03-22T09 :36:44+0800",
+            "state": "enabled",
+            "account": "xian1",
+            "accounttype": 0,
+            "domainid": 2,
+            "domain": "Server",
+            "timezone": "Asia/Shanghai"
+          }
+        ]
+      }
+    ]
+  }
+}
