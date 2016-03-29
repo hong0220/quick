@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="confirm">点击</div>
+<div id="response">接收后台数据</div>
+<div id="wait" class="hide">hello</div>
+
+<script type="text/javascript" src="../../../../resource/js/jquery/jquery.min.js"></script>
+<script>
+    function myajax() {
+        $.ajax({
+            type: 'post',
+            url: 'http://localhost:12345/quick/js/basic/json/parse/text.json',
+            data: jsonData(),
+            dataType: 'json',
+            beforeSend: beforecall,
+            success: callback
+        });
+    }
+
+    function jsonData() {
+        var jsonStr = "({";
+        jsonStr += "\"name\":";
+        jsonStr += "\"tree\"";
+        jsonStr += ",";
+        jsonStr += "\"id\":";
+        jsonStr += "\"123\"";
+        jsonStr += "})";
+        return eval(jsonStr);
+    }
+
+    function beforecall() {
+        $('#wait').addClass("show").append('调出中...');
+    }
+
+    function callback(data) {
+        $('#response').append(data);
+        $('#wait').css("display", "none");
+    }
+
+    $(function () {
+        $('#confirm').click(myajax);
+    })
+</script>
+</body>
+</html> 
