@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<script src="../../resource/js/jquery/jquery.min.js"></script>
-<script src="../../resource/js/d3/d3.min.js"></script>
+<script src="../../../resource/js/jquery/jquery.min.js"></script>
+<script src="../../../resource/js/d3/d3.min.js"></script>
 <script>
     var qstr = "10001";
-    var ajaxsrc = 'http://localhost:12345/quick/A/qqgroup/qqgroup.json';
+    var ajaxsrc = 'http://localhost:12345/quick/d3/pro/qqgroup/qqgroup.json';
     d3.json(ajaxsrc)
             .on("beforesend", function (request) {
                 request.withCredentials = true;
