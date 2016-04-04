@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
 </head>
-<body ng-app="">
+<body ng-app="myApp">
 <input type="text" ng-model="nameText" placeholder="输入过滤信息..."/>
 <ul ng-controller="SecondCtrl">
     <li ng-repeat="info in names | filter:nameText">
@@ -14,14 +14,15 @@
 </ul>
 <script src="../../../resource/js/angular/angular.min.js"></script>
 <script>
-    function SecondCtrl($scope) {
+    var app = angular.module('myApp', []);
+    app.controller('SecondCtrl', ['$scope', function ($scope) {
         $scope.names = [
             {name: 'a乔乐', age: '25'},
             {name: 'b周迅', age: '40'},
             {name: 'c魏瑞', age: '25'},
             {name: 'd展昭', age: '98'}
         ];
-    }
+    }]);
 </script>
 </body>
 </html>
