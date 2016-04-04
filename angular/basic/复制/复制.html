@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>
+        <input type="text" placeholder="copy me" ng-copy="copy=true" value="copy me"/>
+        <span ng-show="copy">复制成功 cppy: {{copy}}</span>
+    </li>
+    <li>
+        <input type="text" placeholder="cut me" ng-cut="cut=true" value="cut me"/>
+        <span ng-show="cut">剪切成功 cut: {{cut}}</span>
+    </li>
+    <li>
+        <input type="text" placeholder="paste me" ng-paste="paste=true"/>
+        <span ng-show="paste">粘贴成功 paste: {{paste}}</span>
+    </li>
+</ul>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+</body>
+</html>
