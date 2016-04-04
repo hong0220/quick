@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var fs = require("fs");
+
+    // 写入文件
+    fs.writeFile('test.txt', 'Hello Node', function (err) {
+        if (err) throw err;
+        console.log('Saved successfully');
+    });
+
+    // 追加写入
+    fs.appendFile('test.txt', 'data to append', function (err) {
+        if (err) throw err;
+        console.log('The "data to append" was appended to file!');
+    });
+
+
+</script>
+</body>
+</html>
