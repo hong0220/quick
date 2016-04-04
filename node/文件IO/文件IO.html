@@ -20,7 +20,21 @@
         console.log('The "data to append" was appended to file!');
     });
 
+    fs.exists('/etc/passwd', function (exists) {
+        console.log(exists ? "存在" : "不存在!");
+    });
 
+    // 重命名
+    fs.rename("old", "new", function (err) {
+        if (err) throw err;
+        console.log('Successful modification,');
+    });
+
+    // 移动文件
+    fs.rename("oldPath", "newPath", function (err) {
+        if (err) throw err;
+        console.log('renamed complete');
+    });
 </script>
 </body>
 </html>
