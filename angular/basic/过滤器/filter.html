@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myApp">
+<input type="text" ng-model="nameText" placeholder="输入过滤信息..."/>
+<ul ng-controller="SecondCtrl">
+    <li ng-repeat="info in names | filter:nameText">
+        {{$index+1}}、今年{{info.name}}已经{{info.age}}岁了！
+        {{$first}}-{{$middle}}-{{$last}}-{{$even}}-{{$odd}}
+    </li>
+</ul>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('SecondCtrl', ['$scope', function ($scope) {
+        $scope.names = [
+            {name: 'a乔乐', age: '25'},
+            {name: 'b周迅', age: '40'},
+            {name: 'c魏瑞', age: '25'},
+            {name: 'd展昭', age: '98'}
+        ];
+    }]);
+</script>
+</body>
+</html>

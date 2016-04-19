@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #barChart {
+            background: #f0f0f0;
+            padding: 10px;
+            font-family: Verdana;
+        }
+
+        #barChart .bar {
+            left: 0px;
+            height: 20px;
+            background: #00ff00;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="barChart"></div>
+<script>
+    //要展示的数据对象
+    var data = [10, 15, 23, 78, 57, 29, 34, 71];
+
+    window.onload = function () {
+        //计算data的长度
+        var len = data.length;
+
+        //获取容器DOM对象
+        var holder = document.querySelector("#barChart");
+
+        //创建len个div对象，并设置其属性
+        for (var i = 0; i < len; i++) {
+            //创建一个新DOM元素
+            var e = document.createElement("div");
+            //设置元素的CSS类为bar
+            e.setAttribute("class", "bar");
+            //设置元素宽度为对应数据值
+            e.style.width = data[i] + "px";
+            //设置元素的文本为对应数据值
+            e.innerText = data[i];
+            //向容器追加此DIV对象
+            holder.appendChild(e);
+        }
+    };
+</script>
+</body>
+</html>

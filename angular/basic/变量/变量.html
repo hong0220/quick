@@ -8,6 +8,15 @@
     <input ng-model="greeting.text"/>
 
     <p>{{greeting.text}},Angular</p>
+
+    <div ng-init="languages=[{name:'java',learningcurve:'high'},{name:'javascript',learningcurve:'medium'}]">
+        <p>编程语言</p>
+        <ul>
+            <li ng-repeat="language in languages">
+                {{'编程语言：'+ language.name +', 难度：' + language.learningcurve}}
+            </li>
+        </ul>
+    </div>
 </div>
 </body>
 <script src="../../../resource/js/angular/angular.min.js"></script>

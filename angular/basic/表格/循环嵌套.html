@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table ng-controller="MainCtrl">
+    <tr>
+        <th></th>
+        <th>P2P</th>
+        <th>余额宝</th>
+        <th>银行理财产品</th>
+    </tr>
+    <tr ng-repeat="info in infoList" ng-cloak>
+        <td ng-bind="info.title"></td>
+        <td class="text-center" ng-repeat="key in ['p2p', 'yeb', 'bank']">
+            <span ng-if="info[key]">
+                <span ng-bind="info[key]"></span>
+            </span>
+            <span ng-if="!info[key]">
+                <span ng-bind="info[key]"></span>
+            </span>
+        </td>
+    </tr>
+</table>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+<script>
+    var myApp = angular.module('myApp', []);
+    myApp.controller('MainCtrl', ['$scope', function ($scope) {
+        $scope.infoList = [
+            {
+                title: '预期年化收益率',
+                p2p: '7% - 14%',
+                bank: '约 4% - 5.5%',
+                yeb: '约 3% - 4%'
+            },
+            {
+                title: '买入当天生息',
+                p2p: true,
+                bank: false,
+                yeb: false
+            },
+            {
+                title: '买入次日开始付息',
+                p2p: true,
+                bank: false,
+                yeb: false
+            },
+            {
+                title: '每日付息',
+                p2p: true,
+                bank: false,
+                yeb: true
+            },
+            {
+                title: '每日利息自动复投',
+                p2p: true,
+                bank: false,
+                yeb: '同货币基金'
+            },
+            {
+                title: '期限灵活，随时可取',
+                p2p: true,
+                bank: false,
+                yeb: true
+            },
+            {
+                title: '可以零钱增投',
+                p2p: true,
+                bank: false,
+                yeb: true
+            }
+        ];
+    }]);
+</script>
+</body>
+</html>
