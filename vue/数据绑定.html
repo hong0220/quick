@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id='demo'>
+    <span>This will never change: {{ msg }}</span><br>
+    <!--数据变化就不会再引起插值更新-->
+    <span>This will never change: {{* msg }}</span>
+</div>
+<script>
+    window.onload = function () {
+        var data = {msg: 'Hello Vue.js!'};
+        new Vue({
+            el: '#demo',
+            data: data
+        })
+        data.msg = "Hello World!";
+    }
+</script>
+</body>
+</html>
