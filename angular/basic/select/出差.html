@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="NameApp">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<div ng-controller="MainCtrl">
+    <select ng-model="selectedProvince" ng-options="obj.province for obj in list">
+        <option value="">请选择省市</option>
+    </select>
+    <select ng-model="selectedCity" ng-options="city.name for city in selectedProvince.citys">
+        <option value="">请选择省市</option>
+    </select>
+    <span ng-bind="selectedCity.result"></span></span>
+</div>
+</body>
+<script src="../../../resource/js/angular/angular.min.js"></script>
+<script>
+    var app = angular.module('NameApp', []);
+    app.controller("MainCtrl", function ($scope) {
+        $scope.list = [
+            {
+                id: 0,
+                province: '河北',
+                citys: [
+                    {"name": "张家口市", "result": "1,2,3,4"},
+                    {"name": "秦皇岛市", "result": "1,2,3,4,5"}
+                ]
+            },
+            {
+                id: 1,
+                province: '小飞子',
+                citys: [
+                    {"name": "张家口市", "result": "1,2,3,4"},
+                    {"name": "秦皇岛市", "result": "1,2,3,4,5"}
+                ]
+            }
+        ];
+    });
+</script>
+</html>
