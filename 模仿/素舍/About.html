@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+        About
+    </title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // $(".post a").attr("target","_blank");
+            var bt = $('#toolBackTop');
+            var sw = $(document.body)[0].clientWidth;
+            $(window).scroll(function () {
+                var st = $(window).scrollTop();
+                if (st > 30) {
+                    bt.show();
+                } else {
+                    bt.hide();
+                }
+            });
+            $('.back-to a').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+            $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+            window.prettyPrint && prettyPrint();
+        })
+    </script>
+</head>
+
+<body>
+<div id="header" class="clearfix">
+    <div id="nav_box">
+        <ul id="nav_menu" class="container_16">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Archive.html">Archive</a></li>
+            <li><a href="Links.html">Links</a></li>
+            <li><a href="About.html">About</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container_16 clearfix">
+    <div class="grid_10" id="content">
+        <div class="post nopost">
+            <h1 class="entry_title"><a href="http://www.veganshe.com/post/about">About</a></h1>
+
+            <p>本人，王小杰</p>
+
+            <p>性别，男，爱素食</p>
+
+            <p>喜欢一个人，极简生活主义者</p>
+
+            <p>初学摄影，至今还未拍出一张满意的照片</p>
+
+            <p>写过代码，至今未发布过一个独立的项目</p>
+
+            <p>学过太极，至今打不了一套完整的太极拳</p>
+
+            <p>一个人行走在觉悟的道路上</p>
+
+            <p>虽然辛苦，但我内心充满希望，因为我坚信</p>
+
+            <h2 id="toc_0">联系</h2>
+
+            <p>veganshe # 163.com</p>
+
+            <p><img src="image/2012041002.jpg" alt=""></p>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="container_16 clearfix">
+    <div></div>
+</div>
+<div style="display:none;" class="back-to" id="toolBackTop">
+    <a title="返回顶部" href="http://www.veganshe.com/about.md#top" class="back-top">返回顶部</a>
+</div>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa574050aab5f8a0d7e2ec44f83a5a986' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="js/h.js" type="text/javascript"></script>
+</body>
+</html>
