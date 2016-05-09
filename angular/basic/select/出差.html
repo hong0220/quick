@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="NameApp">
+<html ng-app="App">
 <head>
     <meta charset="utf-8">
 </head>
@@ -8,34 +8,1543 @@
     <select ng-model="selectedProvince" ng-options="obj.province for obj in list">
         <option value="">请选择省市</option>
     </select>
-    <select ng-model="selectedCity" ng-options="city.name for city in selectedProvince.citys">
+
+    <p/>
+    <select ng-model="selectedCity" ng-options="city.name for city in selectedProvince.citys"
+            ng-change="change(selectedCity)">
         <option value="">请选择省市</option>
     </select>
-    <span ng-bind="selectedCity.result"></span></span>
+
+    <p/>
+    <span ng-bind="resultInfo"></span>
 </div>
 </body>
-<script src="../../../resource/js/angular/angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.2.20/angular.min.js"></script>
 <script>
-    var app = angular.module('NameApp', []);
+    var app = angular.module('App', []);
     app.controller("MainCtrl", function ($scope) {
-        $scope.list = [
-            {
-                id: 0,
-                province: '河北',
-                citys: [
-                    {"name": "张家口市", "result": "1,2,3,4"},
-                    {"name": "秦皇岛市", "result": "1,2,3,4,5"}
-                ]
-            },
-            {
-                id: 1,
-                province: '小飞子',
-                citys: [
-                    {"name": "张家口市", "result": "1,2,3,4"},
-                    {"name": "秦皇岛市", "result": "1,2,3,4,5"}
-                ]
+        $scope.list = [{
+            "citys": [{
+                "items": [{
+                    "buji": 1100,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 500,
+                    "peakseason": 0,
+                    "sijuji": 650
+                }], "name": "全市"
+            }], "province": "北京"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "滨海新区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "东丽区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "西青区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "津南区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "北辰区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "武清区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "宝坻区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "静海区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "蓟县"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "宁河区"
+            }], "province": "天津"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "石家庄市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "廊坊市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "廊坊市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "保定市"
+            }, {
+                "items": [{
+                    "buji": 1200,
+                    "months": "7,8,9,11,12,1,2,3",
+                    "other": 525,
+                    "peakseason": 1,
+                    "sijuji": 675
+                }, {"buji": 800, "months": "4,5,6,10", "other": 350, "peakseason": 0, "sijuji": 450}], "name": "张家口市"
+            }, {
+                "items": [{"buji": 1200, "months": "7,8", "other": 500, "peakseason": 1, "sijuji": 680}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "秦皇岛市"
+            }, {
+                "items": [{"buji": 1000, "months": "7,8,9", "other": 580, "peakseason": 1, "sijuji": 580}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "承德市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "河北"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "太原市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "大同市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "晋城市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "临汾市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "阳泉市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "长治市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "晋中市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 240,
+                    "peakseason": 0,
+                    "sijuji": 400
+                }], "name": "其他地区"
+            }], "province": "山西"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "呼和浩特市"
+            }, {
+                "items": [{"buji": 1200, "months": "7,8,9", "other": 480, "peakseason": 1, "sijuji": 690}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "海拉尔市"
+            }, {
+                "items": [{"buji": 1200, "months": "7,8,9", "other": 480, "peakseason": 1, "sijuji": 690}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "满洲里市"
+            }, {
+                "items": [{"buji": 1200, "months": "7,8,9", "other": 480, "peakseason": 1, "sijuji": 690}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "阿尔山市"
+            }, {
+                "items": [{"buji": 1000, "months": "7,8,9", "other": 400, "peakseason": 1, "sijuji": 580}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "二连浩特市"
+            }, {
+                "items": [{"buji": 1200, "months": "9,10", "other": 480, "peakseason": 1, "sijuji": 690}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "额济纳旗"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "其他地区"
+            }], "province": "内蒙古"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "沈阳市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "其他地区"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 420, "peakseason": 1, "sijuji": 590}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "大连"
+            }], "province": "辽宁"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 960,
+                    "months": "7,8,9",
+                    "other": 420,
+                    "peakseason": 1,
+                    "sijuji": 540
+                }, {"buji": 800, "months": "1,2,3,4,5,6,10,11,12", "other": 350, "peakseason": 0, "sijuji": 450}],
+                "name": "长春市"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 420, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "吉林市"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 420, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "延边州"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 420, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "长白山管理区"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 400
+                }], "name": "其他地区"
+            }], "province": "吉林"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 960,
+                    "months": "7,8,9",
+                    "other": 420,
+                    "peakseason": 1,
+                    "sijuji": 540
+                }, {"buji": 800, "months": "1,2,3,4,5,6,10,11,12", "other": 350, "peakseason": 0, "sijuji": 450}],
+                "name": "哈尔滨市"
+            }, {
+                "items": [{"buji": 900, "months": "6,7,8", "other": 360, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 750,
+                    "months": "1,2,3,4,5,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "牡丹江市"
+            }, {
+                "items": [{"buji": 900, "months": "6,7,8", "other": 360, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 750,
+                    "months": "1,2,3,4,5,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "伊春市"
+            }, {
+                "items": [{"buji": 900, "months": "6,7,8", "other": 360, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 750,
+                    "months": "1,2,3,4,5,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "大兴安岭地区"
+            }, {
+                "items": [{"buji": 900, "months": "6,7,8", "other": 360, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 750,
+                    "months": "1,2,3,4,5,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "黑河市"
+            }, {
+                "items": [{"buji": 900, "months": "6,7,8", "other": 360, "peakseason": 1, "sijuji": 540}, {
+                    "buji": 750,
+                    "months": "1,2,3,4,5,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "佳木斯市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "黑龙江"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 1100,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 500,
+                    "peakseason": 0,
+                    "sijuji": 600
+                }], "name": "全市"
+            }], "province": "上海"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "南京市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "苏州市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "无锡市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "常州市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "镇江市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 360,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "其他地区"
+            }], "province": "江苏"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 400,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "杭州市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "其他地区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "宁波"
+            }], "province": "浙江"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "全省"
+            }], "province": "安徽"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "福州市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "泉州市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "平潭综合实验区"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "其他地区"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 400,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "厦门"
+            }], "province": "福建"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "全省"
+            }], "province": "江西"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 960,
+                    "months": "7,8,9",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 570
+                }, {"buji": 800, "months": "1,2,3,4,5,6,10,11,12", "other": 380, "peakseason": 0, "sijuji": 480}],
+                "name": "烟台市"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 450, "peakseason": 1, "sijuji": 570}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "威海市"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 450, "peakseason": 1, "sijuji": 570}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "日照市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "济南市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "淄博市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "枣庄市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "东营市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "潍坊市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "济宁市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "泰安市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 360,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "其他地区"
+            }, {
+                "items": [{"buji": 960, "months": "7,8,9", "other": 450, "peakseason": 1, "sijuji": 590}, {
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 490
+                }], "name": "青岛"
+            }], "province": "山东"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "郑州市"
+            }, {
+                "items": [{"buji": 1200, "months": "4.5,5.5", "other": 500, "peakseason": 1, "sijuji": 720}, {
+                    "buji": 900,
+                    "months": "1,2,3,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "洛阳市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "其他地区"
+            }], "province": "河南"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "武汉市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "其他地区"
+            }], "province": "湖北"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "长沙市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "湖南"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "广州市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "珠海市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "佛山市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "东莞市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "中山市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "江门市"
+            }, {
+                "items": [{
+                    "buji": 850,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 420,
+                    "peakseason": 0,
+                    "sijuji": 530
+                }], "name": "其他地区"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 450,
+                    "peakseason": 0,
+                    "sijuji": 550
+                }], "name": "深圳"
+            }], "province": "广东"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "南宁市"
+            }, {
+                "items": [{"buji": 1040, "months": "1,2,7,8,9", "other": 430, "peakseason": 1, "sijuji": 610}, {
+                    "buji": 800,
+                    "months": "3,4,5,6,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "桂林市"
+            }, {
+                "items": [{"buji": 1040, "months": "1,2,7,8,9", "other": 430, "peakseason": 1, "sijuji": 610}, {
+                    "buji": 800,
+                    "months": "3,4,5,6,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "北海市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "其他地区"
+            }], "province": "广西"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 1040,
+                    "months": "11,12,1,2",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 650
+                }, {"buji": 800, "months": "3,4,5,6,7,8,9,10", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "海口市"
+            }, {
+                "items": [{"buji": 1040, "months": "11,12,1,2", "other": 450, "peakseason": 1, "sijuji": 650}, {
+                    "buji": 800,
+                    "months": "3,4,5,6,7,8,9,10",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "文昌市"
+            }, {
+                "items": [{"buji": 1040, "months": "11,12,1,2", "other": 450, "peakseason": 1, "sijuji": 650}, {
+                    "buji": 800,
+                    "months": "3,4,5,6,7,8,9,10",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "澄迈县"
+            }, {
+                "items": [{
+                    "buji": 1040,
+                    "months": "11,12,1,2,3",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 650
+                }, {"buji": 800, "months": "4,5,6,7,8,9,10", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "琼海市"
+            }, {
+                "items": [{
+                    "buji": 1040,
+                    "months": "11,12,1,2,3",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 650
+                }, {"buji": 800, "months": "4,5,6,7,8,9,10", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "万宁市"
+            }, {
+                "items": [{
+                    "buji": 1040,
+                    "months": "11,12,1,2,3",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 650
+                }, {"buji": 800, "months": "4,5,6,7,8,9,10", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "陵水县"
+            }, {
+                "items": [{
+                    "buji": 1040,
+                    "months": "11,12,1,2,3",
+                    "other": 450,
+                    "peakseason": 1,
+                    "sijuji": 650
+                }, {"buji": 800, "months": "4,5,6,7,8,9,10", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "保亭县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "海口市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "三沙市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "儋州市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "五指山市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "东方市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "定安县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "屯昌县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "临高县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "白沙县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "昌江县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "乐东县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "琼中县"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 500
+                }], "name": "洋浦开发区"
+            }, {
+                "items": [{
+                    "buji": 1200,
+                    "months": "10,11,12,1,2,3,4",
+                    "other": 480,
+                    "peakseason": 1,
+                    "sijuji": 720
+                }, {"buji": 1000, "months": "5,6,7,8,9", "other": 400, "peakseason": 0, "sijuji": 600}], "name": "三亚市"
+            }], "province": "海南"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 370,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "9个中心城区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 370,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "北部新区"
+            }, {
+                "items": [{
+                    "buji": 770,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "重庆"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 370,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "成都市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "阿坝州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "甘孜州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "绵阳市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "乐山市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "雅安市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "宜宾市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "凉山州"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "德阳市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "遂宁市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "巴中市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "其他地区"
+            }], "province": "四川"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 370,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "贵阳市"
+            }, {
+                "items": [{
+                    "buji": 750,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "贵州"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "昆明市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "大理州"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "丽江市"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "迪庆州"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 380,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "西双版纳州"
+            }, {
+                "items": [{
+                    "buji": 900,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "其他地区"
+            }], "province": "云南"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 1200,
+                    "months": "6,7,8,9",
+                    "other": 530,
+                    "peakseason": 1,
+                    "sijuji": 750
+                }, {"buji": 800, "months": "1,2,3,4,5,10,11,12", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "拉萨市"
+            }, {
+                "items": [{"buji": 800, "months": "6,7,8,9", "other": 350, "peakseason": 1, "sijuji": 500}, {
+                    "buji": 500,
+                    "months": "1,2,3,4,5,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 400
+                }], "name": "其他地区"
+            }], "province": "西藏"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 460
+                }], "name": "西安市"
+            }, {
+                "items": [{
+                    "buji": 680,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "榆林市"
+            }, {
+                "items": [{
+                    "buji": 680,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "延安市"
+            }, {
+                "items": [{
+                    "buji": 680,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 260,
+                    "peakseason": 0,
+                    "sijuji": 320
+                }], "name": "杨凌区"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 260,
+                    "peakseason": 0,
+                    "sijuji": 320
+                }], "name": "咸阳市"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 260,
+                    "peakseason": 0,
+                    "sijuji": 320
+                }], "name": "宝鸡市"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 260,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "渭南市"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 260,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "韩城市"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 230,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "其他地区"
+            }], "province": "陕西"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "兰州市"
+            }, {
+                "items": [{
+                    "buji": 700,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 310,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "其他地区"
+            }], "province": "甘肃"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 1200,
+                    "months": "6,7,8,9",
+                    "other": 530,
+                    "peakseason": 1,
+                    "sijuji": 750
+                }, {"buji": 800, "months": "1,2,3,4,5,10,11,12", "other": 350, "peakseason": 0, "sijuji": 500}],
+                "name": "西宁市"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 450, "peakseason": 1, "sijuji": 525}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "玉树州"
+            }, {
+                "items": [{
+                    "buji": 600,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "果洛州"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 375, "peakseason": 1, "sijuji": 525}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 250,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "海北州"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 375, "peakseason": 1, "sijuji": 525}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 250,
+                    "peakseason": 0,
+                    "sijuji": 350
+                }], "name": "黄南州"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 375, "peakseason": 1, "sijuji": 450}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 250,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "海东市"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 375, "peakseason": 1, "sijuji": 450}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 250,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "海南州"
+            }, {
+                "items": [{"buji": 900, "months": "5,6,7,8,9", "other": 300, "peakseason": 1, "sijuji": 450}, {
+                    "buji": 600,
+                    "months": "1,2,3,4,10,11,12",
+                    "other": 200,
+                    "peakseason": 0,
+                    "sijuji": 300
+                }], "name": "海西州"
+            }], "province": "青海"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 470
+                }], "name": "银川市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 330,
+                    "peakseason": 0,
+                    "sijuji": 430
+                }], "name": "其他地区"
+            }], "province": "宁夏"
+        }, {
+            "citys": [{
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 350,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "乌鲁木齐市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "石河子市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "克拉玛依市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "昌吉州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "伊犁州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "阿勒泰地区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "博州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "吐鲁番市"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "哈密地区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "巴州"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 340,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "和田地区"
+            }, {
+                "items": [{
+                    "buji": 800,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 320,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "克州"
+            }, {
+                "items": [{
+                    "buji": 780,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 480
+                }], "name": "喀什地区"
+            }, {
+                "items": [{
+                    "buji": 700,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 450
+                }], "name": "阿克苏地区"
+            }, {
+                "items": [{
+                    "buji": 700,
+                    "months": "1,2,3,4,5,6,7,8,9,10,11,12",
+                    "other": 300,
+                    "peakseason": 0,
+                    "sijuji": 400
+                }], "name": "塔城地区"
+            }], "province": "新疆"
+        }]
+        ;
+
+        $scope.change = function (result) {
+            var info = "";
+            for (var i = 0; i < result.items.length; ++i) {
+                var item = result.items[i];
+                var months = item.months.split(",");
+                for (var j = 0; j < months.length; ++j) {
+                    info += months[j] + "月,";
+                }
+                info += item.buji + ",";
+                info += item.sijuji + ",";
+                info += item.other + ",";
+                info += item.peakseason + ",";
             }
-        ];
+            $scope.resultInfo = info;
+        }
     });
 </script>
 </html>

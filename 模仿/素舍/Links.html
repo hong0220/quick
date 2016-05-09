@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+        Links
+    </title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/prettify.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // $(".post a").attr("target","_blank");
+            var bt = $('#toolBackTop');
+            var sw = $(document.body)[0].clientWidth;
+            $(window).scroll(function () {
+                var st = $(window).scrollTop();
+                if (st > 30) {
+                    bt.show();
+                } else {
+                    bt.hide();
+                }
+            });
+            $('.back-to a').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 800);
+                return false;
+            });
+            $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto');
+            window.prettyPrint && prettyPrint();
+        })
+    </script>
+</head>
+
+<body>
+<div id="header" class="clearfix">
+    <div id="nav_box">
+        <ul id="nav_menu" class="container_16">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Archive.html">Archive</a></li>
+            <li><a href="Links.html">Links</a></li>
+            <li><a href="About.html">About</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container_16 clearfix">
+    <div class="grid_10" id="content">
+        <div class="post nopost">
+            <h1 class="entry_title"><a href="http://www.veganshe.com/post/links">Links</a></h1>
+
+            <h3 id="toc_0">Bloger</h3>
+            <ul>
+                <li><a href="http://www.guojing.me/">JGuo</a></li>
+            </ul>
+            <h3 id="toc_1">GTDer</h3>
+            <ul>
+                <li><a href="http://www.hiddenwangcc.com/">易仁永澄</a></li>
+                <li><a href="http://www.lishen.me/">李参的个人成长空间</a></li>
+                <li><a href="http://upwith.me/">我们一起成长</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer" class="container_16 clearfix">
+    <div></div>
+</div>
+<div style="display:none;" class="back-to" id="toolBackTop">
+    <a title="返回顶部" href="http://www.veganshe.com/links.md#top" class="back-top">返回顶部</a>
+</div>
+
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fa574050aab5f8a0d7e2ec44f83a5a986' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="js/h.js" type="text/javascript"></script>
+</body>
+</html>
