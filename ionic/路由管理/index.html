@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="ezApp">
+<meta charset="utf-8">
+<head>
+    <meta name="viewport"
+          content="initial-scale=1,maximum-scale=1,user-scalable=no,width=device-width,height=device-height">
+    <script src="../../resource/ionic/js/ionic.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../resource/ionic/css/ionic.min.css">
+</head>
+<body ng-controller="ezCtrl">
+<!--视图显示容器：子视图将在这里显示-->
+<ion-nav-view>
+    <img src="img/0019.png">
+</ion-nav-view>
+
+<ion-footer-bar>
+    <div class="button-bar">
+        <a class="button" ng-click="go('state1');">state1</a>
+        <a class="button" ng-click="go('state2');">state2</a>
+        <a class="button" ng-click="go('state3');">state3</a>
+    </div>
+</ion-footer-bar>
+
+<!--子视图1：state1.html-->
+<script id="state1.html" type="text/ng-template">
+    <p>这个内容在状态为state1时显示</p>
+    <img src="img/0016.png">
+</script>
+
+<!--子视图2：state2.html-->
+<script id="state2.html" type="text/ng-template">
+    <p>这个内容在状态为state2时显示</p>
+    <img src="img/0017.png">
+</script>
+
+<!--子视图3：state3.html-->
+<script id="state3.html" type="text/ng-template">
+    <p>这个内容在状态为state3时显示</p>
+    <img src="img/0018.png">
+</script>
+
+<script>
+    angular.module("ezApp", ["ionic"])
+            .config(function ($stateProvider) {
+                //配置状态机的各个状态
+                $stateProvider
+                        .state("state1", {templateUrl: "state1.html"})
+                        .state("state2", {templateUrl: "state2.html"})
+                        .state("state3", {templateUrl: "state3.html"});
+            })
+            .controller("ezCtrl", function ($scope, $state) {
+                //根据参数切换到指定的状态
+                $scope.go = function (state) {
+                    $state.go(state);
+                };
+            });
+</script>
+</body>
+</html>

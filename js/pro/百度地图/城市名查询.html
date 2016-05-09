@@ -26,7 +26,7 @@
 <body>
 <div id="allmap"></div>
 <div id="r-result">
-    城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;"/>
+    城市名: <input id="cityName" type="text" style="width:100px; margin-right:10px;"  value="乌镇"/>
     <input type="button" value="查询" onclick="theLocation()"/>
 </div>
 </body>
@@ -41,6 +41,7 @@
         var city = document.getElementById("cityName").value;
         if (city != "") {
             map.centerAndZoom(city, 11);      // 用城市名设置地图中心点
+            console.log(map);
         }
     }
 </script>
