@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../resource/js/uve/vue.js"></script>
+</head>
+<body>
+<div id='demo'>
+    <span>{{msg | lowercase | capitalize}}</span>
+</div>
+<script>
+    window.onload = function () {
+        var data = {msg: 'heLLO '};
+        new Vue({
+            el: '#demo',
+            data: data
+        })
+    }
+</script>
+</body>
+</html>

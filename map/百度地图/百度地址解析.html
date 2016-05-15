@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <style type="text/css">
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?key=XR2EwmviwXbwiTMTQ4YcQvbipExB19Vt&v=1.1&services=true"></script>
+    <title>地址解析</title>
+</head>
+<body>
+<div id="shopmainm" style="width:901px;height:462px;border:#ccc solid 1px;"></div>
+<p><a href="javascript:SetBShop('福建省厦门市同安区西柯镇官浔村631号之3店面',16);">福建省厦门市同安区西柯镇官浔村631号之3店面</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市同安区三秀街大兴商城3楼1、2号',16);">福建省厦门市同安区三秀街大兴商城3楼1、2号</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市湖里区乌石浦SM城市广场五楼',16);">福建省厦门市湖里区乌石浦SM城市广场五楼</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市集美区杏东路牡丹园528号',16);">福建省厦门市集美区杏东路牡丹园528号</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市湖里区海天路43号一层',16);">福建省厦门市湖里区海天路43号一层</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市翔安区新圩镇合兴街109号',16);">福建省厦门市翔安区新圩镇合兴街109号</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市思明区思明北路23-27号',16);">福建省厦门市思明区思明北路23-27号</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市海沧区新垵中路54号之二一楼',16);">福建省厦门市海沧区新垵中路54号之二一楼</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市湖里区后埔社483号之一至之三',16);">福建省厦门市湖里区后埔社483号之一至之三</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市湖里区殿前社区3001号之一',16);">福建省厦门市湖里区殿前社区3001号之一</a></p>
+
+<p><a href="javascript:SetBShop('福建省厦门市思明区莲前东路a37-a39号瑞景商业广场二楼',16);">福建省厦门市思明区莲前东路a37-a39号瑞景商业广场二楼</a></p>
+</body>
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("shopmainm");
+    var point = new BMap.Point(116.331398, 39.897445);
+    map.centerAndZoom(point, 12);
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    function initialize() {
+        SetMShop('福建省厦门市', 12);
+    }
+    function SetBShop(address, zoom) {
+        createMap(address, zoom);
+        //map.setZoom(18);
+    }
+    function createMap(address, zoom) {
+        // 将地址解析结果显示在地图上,并调整地图视野
+        myGeo.getPoint(address, function (point) {
+            if (point) {
+                var marker = new BMap.Marker(new BMap.Point(point.lng,
+                        point.lat));
+                map.addOverlay(marker);
+                map.centerAndZoom(point, zoom);
+            }
+        });
+    }
+    setTimeout(function () {
+        map.setZoom(17); //放到到14级
+    }, 1500);
+    map.enableScrollWheelZoom(true);
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../resource/js/uve/vue.js"></script>
+</head>
+<body>
+<div id='demo'>
+    <p>{{ msg + "World!" }}</p>
+
+    <p>{{ number + 1 }}</p>
+
+    <p>{{ ok ? 'YES' : 'NO' }}</p>
+
+    <p>{{ message.split('').reverse().join('') }}</p>
+</div>
+<script>
+    window.onload = function () {
+        var data = {msg: 'Hello ', number: 1, ok: 1, message: 'hello world'};
+        new Vue({
+            el: '#demo',
+            data: data
+        })
+    }
+</script>
+</body>
+</html>

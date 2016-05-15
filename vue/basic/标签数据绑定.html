@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../resource/js/vue.min.js"></script>
+</head>
+<body>
+<div id='{{id}}'>
+</div>
+<script>
+    window.onload = function () {
+        var data = {id: 'demo'};
+        new Vue({
+            el: 'div',
+            data: data
+        })
+    }
+</script>
+</body>
+</html>
