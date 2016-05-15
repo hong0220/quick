@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="js/vue.min.js"></script>
+    <script src="../../resource/js/vue.min.js"></script>
 </head>
 <body>
-<div id='{{id}}'>
+<div id='demo'>
+    <p v-if="msg">Hello!</p>
 </div>
 <script>
     window.onload = function () {
-        var data = {id: 'demo'};
+        var data = {msg: 1};
         new Vue({
-            el: 'div',
+            el: '#demo',
             data: data
         })
     }
