@@ -52,12 +52,12 @@
 </head>
 <body>
 <form action="#">
-    <p>输入ip地址查询相应的信息</p>
+    <p>IP地址信息查询</p>
     <input id="iptext" type="text">
     <button type="submit">查询</button>
 </form>
 <div></div>
-<script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../resource/js/jquery/jquery.min.js  "></script>
 <script>
     $(function () {
         $("form").submit(function (e) {
@@ -74,7 +74,6 @@
                     var info = data.retData;
                     $.each(info, function (key, value) {
                         $("div").append(key + ":" + value + "<br/>");
-
                     });
                 }
             })
